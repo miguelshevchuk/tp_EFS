@@ -1,0 +1,23 @@
+import { Router} from 'express';
+import { check, validationResult } from 'express-validator';
+import { usuarioController } from '../controller/usuario/UsuarioController';
+
+
+
+class UsuarioRoutes {
+
+    public router: Router = Router();
+
+    constructor() {
+        this.config();
+    }
+
+    config(): void {
+        this.router.get('/:id', usuarioController.getOne);
+    }
+
+}
+
+const usuarioRoutes: UsuarioRoutes = new UsuarioRoutes(); 
+
+export default usuarioRoutes.router;
