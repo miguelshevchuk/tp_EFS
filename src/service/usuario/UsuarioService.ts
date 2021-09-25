@@ -1,6 +1,6 @@
 
 import { getRepository } from 'typeorm'
-import { Usuario } from '../model/Models';
+import { Usuario } from '../../model/Models';
 
 class UsuarioService{
  

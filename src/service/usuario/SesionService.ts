@@ -1,7 +1,7 @@
 
 import { getRepository } from 'typeorm'
-import { ILogin } from '../interfaces/usuario/ILogin';
-import { Usuario } from '../model/Usuario';
+import { ILogin } from '../../interfaces/usuario/ILogin';
+import { Usuario } from '../../model/Usuario';
 
 class SesionService{
  

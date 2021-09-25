@@ -1,8 +1,5 @@
 import express from 'express'
-import { ParamsDictionary } from 'express-serve-static-core';
-import { ParsedQs } from 'qs';
-import sesionService from '../../service/SesionService';
-import usuarioService from '../../service/UsuarioService';
+import sesionService from '../../service/usuario/SesionService';
 import { ICRUDController } from '../ICRUDController';
 
 class SesionController implements ICRUDController{
