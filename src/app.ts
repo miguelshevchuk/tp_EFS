@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(morgan('tiny'))
 app.use(Router)
 
-const port = process.env.PORT || 7680
+const port = process.env.PORT || 3000
 
 
 createConnection(dbConfig)
