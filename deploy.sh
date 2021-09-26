@@ -3,10 +3,10 @@
 echo "Descargando aplicacion"
 git pull
 echo "Generando nueva imagen"
-docker build -t EFS/node:latest .
+docker build -t efs/node:latest .
 echo "Eliminando contenedor viejo"
-docker stop EFS
-docker rm EFS
+docker stop efs
+docker rm efs
 echo "Desplegando nuevo contenedor"
-docker run -p 7680:7680 EFS/node --name EFS
+docker run --name efs -p 7680:7680 efs/node-web-app
 exit
