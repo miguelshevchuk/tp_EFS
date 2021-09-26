@@ -15,6 +15,11 @@ class UsuarioService{
         return usuario
     }
 
+    public async create(usuario:Usuario){
+        let usuarioRepository = getRepository(Usuario);
+       await usuarioRepository.save(usuario);
+    }
+
 
 }
 
