@@ -3,7 +3,7 @@
 echo "Descargando aplicacion"
 git pull
 echo "Generando nueva imagen"
-docker build -t efs/node:latest .
+sudo docker build . -t efs/node-web-app
 echo "Eliminando contenedor viejo"
 docker stop efs
 docker rm efs
