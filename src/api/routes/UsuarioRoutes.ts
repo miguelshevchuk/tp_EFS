@@ -1,6 +1,6 @@
 import { Router} from 'express';
 import { check, validationResult } from 'express-validator';
-import { usuarioController } from '../controller/usuario/UsuarioController';
+import { usuarioController } from '../../controller/usuario/UsuarioController';
 
 
 

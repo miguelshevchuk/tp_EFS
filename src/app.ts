@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from 'morgan'
-import Router from "./routes/Router"
+import Router from "./api/routes/Router"
 import { createConnection } from 'typeorm'
 import dbConfig from './config/database'
 

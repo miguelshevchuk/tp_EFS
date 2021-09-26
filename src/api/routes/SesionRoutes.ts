@@ -1,5 +1,5 @@
 import { Router} from 'express';
-import { sesionController } from '../controller/usuario/SesionController';
+import { sesionController } from '../../controller/usuario/SesionController';
 
 
 
