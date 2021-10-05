@@ -1,10 +1,8 @@
 import {
-    PrimaryGeneratedColumn,
     Column,
     Entity,
-    OneToMany
+    PrimaryColumn
   } from 'typeorm'
-import { Usuario } from '../Models';
 
 @Entity({
     schema : 'efs',
@@ -13,8 +11,8 @@ import { Usuario } from '../Models';
 export class Objetivo {
 
 
-    @PrimaryGeneratedColumn({name: 'objetivo_id'})
-    objetivoId!: string
+    @PrimaryColumn({name: 'objetivo_id'})
+    objetivoId!: number
 
     @Column({
         name: 'descripcion'

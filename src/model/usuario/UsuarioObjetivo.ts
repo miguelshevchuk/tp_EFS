@@ -17,18 +17,12 @@ export class UsuarioObjetivo {
 
     
     @PrimaryGeneratedColumn({name: 'usuario_objetivo_id'})
-    usuarioObjetivoId!: string
+    usuarioObjetivoId!: number
 
-    @Column({
-        name: 'objetivo_id'
-    })
     @OneToOne(() => Objetivo)
     @JoinColumn({name: 'objetivo_id'})
     objetivo!: Objetivo
 
-    @Column({
-        name: 'usuario_id'
-    })
     @OneToOne(() => Usuario)
     @JoinColumn({name: 'usuario_id'})
     usuario!: Usuario

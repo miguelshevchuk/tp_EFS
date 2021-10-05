@@ -14,7 +14,7 @@ import { Sexo } from './Sexo'
 export class Usuario {
 
     @PrimaryGeneratedColumn({name: 'usuario_id'})
-    usuarioId!: string
+    usuarioId!: number
 
     @Column({
         name: 'password'
