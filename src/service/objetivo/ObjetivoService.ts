@@ -9,7 +9,7 @@ class ObjetivoService{
  
     public async getAll(){
         let objetivoRepository = getRepository(Objetivo);
-
+        
         return objetivoRepository.find();
     }
 

@@ -1,5 +1,6 @@
 import { Router} from 'express';
 import { objetivoController } from '../../controller/objetivo/ObjetivoController';
+import { authenticated } from '../middleware/auth';
 
 
 
@@ -12,8 +13,8 @@ class ObjetivoRoutes {
     }
 
     config(): void {
-        this.router.post('/', objetivoController.create);
-        this.router.post('/personalizado', objetivoController.createPersonalizado);
+        this.router.post('/', authenticated, objetivoController.create);
+        this.router.post('/personalizado', authenticated, objetivoController.createPersonalizado);
     }
 
 }

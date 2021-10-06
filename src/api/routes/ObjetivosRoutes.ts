@@ -1,5 +1,6 @@
 import { Router} from 'express';
 import { objetivoController } from '../../controller/objetivo/ObjetivoController';
+import { authenticated } from '../middleware/auth';
 
 
 
@@ -12,7 +13,7 @@ class ObjetivosRoutes {
     }
 
     config(): void {
-        this.router.get('/', objetivoController.getAll);
+        this.router.get('/', authenticated, objetivoController.getAll);
     }
 
 }

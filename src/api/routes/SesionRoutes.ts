@@ -1,5 +1,6 @@
 import { Router} from 'express';
 import { sesionController } from '../../controller/usuario/SesionController';
+import { validateLogin } from '../middleware/auth';
 
 
 
@@ -12,7 +13,7 @@ class SesionRoutes {
     }
 
     config(): void {
-        this.router.post('/', sesionController.create);
+        this.router.post('/',validateLogin, sesionController.create);
     }
 
 }

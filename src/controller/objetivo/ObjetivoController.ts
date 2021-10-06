@@ -2,7 +2,6 @@ import express from 'express'
 import { ParamsDictionary } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 import objetivoService from '../../service/objetivo/ObjetivoService';
-import usuarioService from '../../service/usuario/UsuarioService';
 import { ICRUDController } from '../ICRUDController';
 
 class ObjetivoController implements ICRUDController{
@@ -22,7 +21,7 @@ class ObjetivoController implements ICRUDController{
     public async create(req: express.Request, res: express.Response, next: express.NextFunction){
         try {
             await objetivoService.create(req.body)
-            return res.status(200).send()   
+            return res.status(201).send()   
         } catch (e) {
           next(e)
         }
@@ -31,7 +30,7 @@ class ObjetivoController implements ICRUDController{
     public async createPersonalizado(req: express.Request, res: express.Response, next: express.NextFunction){
         try {
             await objetivoService.createPersonalizado(req.body)
-            return res.status(200).send()   
+            return res.status(201).send()   
         } catch (e) {
           next(e)
         }

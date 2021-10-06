@@ -1,6 +1,6 @@
 import { INuevoObjetivo } from "./INuevoObjetivo";
 
-export class INuevoObjetivoPersonalizado extends INuevoObjetivo{
+export interface INuevoObjetivoPersonalizado extends INuevoObjetivo{
 
     descripcion:string
     

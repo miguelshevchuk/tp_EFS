@@ -1,8 +1,8 @@
-export class INuevoUsuario {
+export interface INuevoUsuario {
 
-    password!: string
-    email!: string
-    edad!: number
-    sexo!: string
+    password: string
+    email: string
+    edad: number
+    sexo: string
  
 }

@@ -13,7 +13,6 @@ class UsuarioRoutes {
     }
 
     config(): void {
-        this.router.get('/:id', usuarioController.getOne);
         this.router.post('/', usuarioController.create);
     }
 
