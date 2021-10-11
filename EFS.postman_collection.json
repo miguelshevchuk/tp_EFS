@@ -6,6 +6,35 @@
 	},
 	"item": [
 		{
+			"name": "usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"prueba2\",\r\n    \"password\": \"aguanteRiver\",\r\n    \"edad\": 28,\r\n    \"sexo\": \"M\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/usuario/",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "login",
 			"event": [
 				{
@@ -53,21 +82,18 @@
 			"response": []
 		},
 		{
-			"name": "usuario",
+			"name": "perfil",
 			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"usuario\": \"prueba1\",\r\n    \"password\": \"aguanteRiver\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzkwMzc4OCwiZXhwIjoxNjMzOTkwMTg4fQ.Tn1yKVVGZ5dfIP8MPgmiO-lPfVJPWXNqDDJZ_KLp6ck",
+						"type": "text"
 					}
-				},
+				],
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/usuario/",
+					"raw": "http://{{HOST}}:{{PORT}}/usuario/perfil/3",
 					"protocol": "http",
 					"host": [
 						"{{HOST}}"
@@ -75,7 +101,187 @@
 					"port": "{{PORT}}",
 					"path": [
 						"usuario",
-						""
+						"perfil",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Reels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "My Reels by seccion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzk2MTk2NSwiZXhwIjoxNjM0MDQ4MzY1fQ.qSeq0r1iD6UfxrFeaOCEvg73ceSFYFCZswF3WIBBtK4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reelId\": 2,\r\n    \"like\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reel/like",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reel",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzk2NTI4MCwiZXhwIjoxNjM0MDUxNjgwfQ.sYEdBcMB61CuacpI1mseAB1bF_Uznipj2PXyhoXP8fE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reel/like/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reel",
+						"like",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "favorito",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzk2NTI4MCwiZXhwIjoxNjM0MDUxNjgwfQ.sYEdBcMB61CuacpI1mseAB1bF_Uznipj2PXyhoXP8fE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reelId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reel/favorito",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reel",
+						"favorito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "favorito",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzk2NTI4MCwiZXhwIjoxNjM0MDUxNjgwfQ.sYEdBcMB61CuacpI1mseAB1bF_Uznipj2PXyhoXP8fE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reel/favorito/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reel",
+						"favorito",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "objetivos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "objetivo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuarioId\": 8,\r\n    \"objetivoId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/objetivo",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"objetivo"
 					]
 				}
 			},
