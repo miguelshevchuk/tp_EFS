@@ -13,6 +13,7 @@ export const errorHandler = [
       console.log(err)
       res.status(err.status).send(err.mensaje)
     }else{
+      console.log(err)
       res.status(500).send("Ocurrio un error inesperado")
     }    
 

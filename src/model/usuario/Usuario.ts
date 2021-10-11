@@ -5,6 +5,7 @@ import {
     ManyToOne,
     JoinColumn
   } from 'typeorm'
+import { Perfil } from './Perfil'
 import { Sexo } from './Sexo'
 
 @Entity({
@@ -39,5 +40,14 @@ export class Usuario {
     @ManyToOne(() => Sexo)
     @JoinColumn({name: 'sexo_id'})
     sexo!: Sexo
+
+    @Column({
+        name: 'perfil_id',
+        nullable: true
+    })
+    @ManyToOne(() => Perfil)
+    @JoinColumn({name: 'perfil_id'})
+    perfil: Perfil
+    
  
 }
