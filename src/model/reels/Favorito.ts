@@ -3,7 +3,8 @@ import {
     Column,
     Entity,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    Unique
   } from 'typeorm'
 import {  Usuario } from '../Models'
 import { Reel } from './Reel'
@@ -12,6 +13,7 @@ import { Reel } from './Reel'
     schema : 'efs',
     name : 'FAVORITOS'
 })
+@Unique(["reel", "usuario"])
 export class Favorito {
 
     @PrimaryGeneratedColumn({name: 'favorito_id'})

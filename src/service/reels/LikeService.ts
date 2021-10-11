@@ -1,34 +1,37 @@
 
-import { getRepository, Like } from 'typeorm'
-import { ILogin } from '../../interfaces/usuario/ILogin';
-import { Reel, Seccion, Usuario } from '../../model/Models';
-import { CredencialesInvalidasError } from '../../error/auth/CredencialesInvalidasError';
-import { jwtService } from '../jwt/JwtService';
-import { IJwtUnsigned } from '../../interfaces/jwt/IJwtUnsigned';
-import usuarioService from '../usuario/UsuarioService';
+import { getRepository, Repository } from 'typeorm'
+import { Like} from '../../model/Models';
 import { ILike } from '../../interfaces/reels/ILike';
 import reelMapper from '../../mapper/ReelMapper';
 
 class LikeService{
 
-    public async create(userId:string, iLike:ILike){
-
-        let like = reelMapper.mapNuevoLike(iLike, userId)
-
+    public async like(userId:string, iLike:ILike){
         let likeRepository = getRepository(Like);
-        likeRepository.create(like)
+
+        let likeExistente = await likeRepository.findOne({usuario : {usuarioId : parseInt(userId)}, reel: {reelId: iLike.reelId}})
+
+        if(likeExistente){
+            this.update(userId, iLike, likeRepository)
+        }else{
+            this.save(userId, iLike, likeRepository)
+        }
+        
     }
 
-    public async update(userId:string, iLike:ILike){
+    private async save(userId:string, iLike:ILike, likeRepository:Repository<Like>){
+        let like = reelMapper.mapNuevoLike(iLike, userId)       
+        await likeRepository.save(like)        
+    }
 
-        let likeRepository = getRepository(Like);
-        likeRepository.update({usuario : {usuarioId : userId}, reel: {reelId: iLike.reelId}}, {like : iLike.like})
+    private async update(userId:string, iLike:ILike, likeRepository:Repository<Like>){
+        await likeRepository.update({usuario : {usuarioId : parseInt(userId)}, reel: {reelId: iLike.reelId}}, {like : iLike.like})
     }
 
     public async delete(userId:string, reelId:number){
 
         let likeRepository = getRepository(Like);
-        likeRepository.delete({usuario : {usuarioId : userId}, reel: {reelId: reelId}})
+        await likeRepository.delete({usuario : {usuarioId : parseInt(userId)}, reel: {reelId: reelId}})
     }
     
 }

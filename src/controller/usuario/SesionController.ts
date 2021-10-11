@@ -13,7 +13,7 @@ class SesionController implements ICRUDController{
         try {
             let login = req.body;
             let jwt = await sesionService.login(login)
-            return res.status(200).send(jwt)   
+            return res.status(201).send(jwt)   
         } catch (e) {
           next(e)
         }

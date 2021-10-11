@@ -20,7 +20,7 @@ class UsuarioController implements ICRUDController{
     public async create(req: express.Request, res: express.Response, next: express.NextFunction){
         try {
             await usuarioService.create(req.body);
-            return res.status(200).send()   
+            return res.status(201).send()   
         } catch (e) {
           next(e)
         }

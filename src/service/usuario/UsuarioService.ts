@@ -1,6 +1,8 @@
 
 import { getRepository } from 'typeorm'
 import { authenticated } from '../../api/middleware/auth';
+import { UsuarioExistenteError } from '../../error/auth/UsuarioExistenteError';
+import { UsuarioInexistenteError } from '../../error/auth/UsuarioInexistenteError';
 import { INuevoUsuario } from '../../interfaces/usuario/INuevoUsuario';
 import usuarioMapper from '../../mapper/UsuarioMapper';
 import { Usuario } from '../../model/Models';
@@ -15,7 +17,7 @@ class UsuarioService{
             .getOne();
 
         if (!usuario) {
-            throw 'USER_NOT_FOUND'
+            throw new UsuarioInexistenteError()
         }
 
         return usuario
@@ -23,6 +25,15 @@ class UsuarioService{
 
     public async create(nuevoUsuario:INuevoUsuario){
         let usuarioRepository = getRepository(Usuario);
+
+        let usuarioExistente = await usuarioRepository.findOne({email : nuevoUsuario.email});
+
+        console.log(usuarioExistente)
+
+        if(usuarioExistente){
+            throw new UsuarioExistenteError()
+        }
+
        await usuarioRepository.save(usuarioMapper.mapNuevoUsuario(nuevoUsuario));
     }
 

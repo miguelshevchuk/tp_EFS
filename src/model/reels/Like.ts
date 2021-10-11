@@ -3,7 +3,8 @@ import {
     Column,
     Entity,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    Unique
   } from 'typeorm'
 import {  Usuario } from '../Models'
 import { Reel } from './Reel'
@@ -12,6 +13,7 @@ import { Reel } from './Reel'
     schema : 'efs',
     name : 'LIKES'
 })
+@Unique(["reel", "usuario"])
 export class Like {
 
     @PrimaryGeneratedColumn({name: 'like_id'})
@@ -33,7 +35,8 @@ export class Like {
     usuario!: Usuario
 
     @Column({
-        name: 'like'
+        name: 'like',
+        nullable:false
     })
     like!: Boolean
  

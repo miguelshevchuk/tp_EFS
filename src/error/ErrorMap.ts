@@ -17,4 +17,6 @@ export const ErrorMap: MapError = {
     CREDENCIALES_INVALIDAS: new ErrorType("Las credenciales ingresadas son invalidas", 401),
     JWT_SECRET: new ErrorType("Error de configuracion"),
     JWT_CREATE: new ErrorType("Error al generar el token"),
+    USUARIO_INEXISTENTE: new ErrorType("Usuario Invalido", 401),
+    USUARIO_EXISTENTE: new ErrorType("El email ya se encuentra en uso", 400),
 }

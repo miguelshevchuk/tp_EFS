@@ -5,6 +5,7 @@ import express from 'express'
 import ObjetivoRoutes from "./ObjetivoRoutes"
 import ReelsRoutes from "./ReelsRoutes"
 import LikeRoutes from "./LikeRoutes"
+import FavoritoRoutes from "./FavoritoRoutes"
 
 class Routes {
 
@@ -21,6 +22,7 @@ class Routes {
         this.Router.use('/objetivo', ObjetivoRoutes);
         this.Router.use('/reels', ReelsRoutes);
         this.Router.use('/reel/like', LikeRoutes);
+        this.Router.use('/reel/favorito', FavoritoRoutes);
     }
 
 }

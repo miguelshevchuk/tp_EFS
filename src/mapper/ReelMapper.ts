@@ -1,6 +1,6 @@
+import { IFavorito } from "../interfaces/reels/IFavorito";
 import { ILike } from "../interfaces/reels/ILike";
-import { INuevoUsuario } from "../interfaces/usuario/INuevoUsuario";
-import { Like, Usuario } from "../model/Models";
+import { Favorito, Like, Usuario } from "../model/Models";
 
 var objectMapper = require('object-mapper');
 
@@ -11,13 +11,27 @@ class ReelMapper{
         "reelId": "reel.reelId"
       };
 
+     private defFavoritoMapper = {
+        "reelId": "reel.reelId"
+      };
+
     public mapNuevoLike : (nuevoLike:ILike, usuarioId:string) => Like = function(nuevoLike, usuarioId){
 
         let like =  Object.assign(new Like(), objectMapper(nuevoLike, this.defLikeMapper));
 
-        like.usuario.usuarioId = usuarioId
+        like.usuario = {usuarioId : parseInt(usuarioId)}
 
         return like
+
+    }
+
+    public mapFavorito : (nuevoFavorito:IFavorito, usuarioId:string) => Favorito = function(nuevoFavorito, usuarioId){
+
+        let favorito =  Object.assign(new Favorito(), objectMapper(nuevoFavorito, this.defFavoritoMapper));
+
+        favorito.usuario = {usuarioId : parseInt(usuarioId)}
+
+        return favorito
 
     }
 

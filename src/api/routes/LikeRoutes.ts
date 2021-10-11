@@ -14,7 +14,6 @@ class LikeRoutes {
 
     config(): void {
         this.router.post('/',authenticated, likeController.create);
-        this.router.put('/',authenticated, likeController.update);
         this.router.delete('/:reelId',authenticated, likeController.delete);
     }
 
