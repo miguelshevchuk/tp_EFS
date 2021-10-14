@@ -4,5 +4,6 @@ export interface INuevoUsuario {
     email: string
     edad: number
     sexo: string
+    nombreApellido:string
  
 }

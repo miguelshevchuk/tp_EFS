@@ -5,7 +5,7 @@ import { authenticated } from '../middleware/auth';
 
 
 
-class ReelsRoutes {
+class ReelRoutes {
 
     public router: Router = Router();
 
@@ -14,12 +14,11 @@ class ReelsRoutes {
     }
 
     config(): void {
-        this.router.get('/grupos',authenticated, reelController.getGrupos);
-        this.router.get('/grupo/:grupoId',authenticated, reelController.getMyReelsBySeccion);
+        this.router.get('/:reelId',authenticated, reelController.getOne);
     }
 
 }
 
-const reelsRoutes: ReelsRoutes = new ReelsRoutes(); 
+const reelRoutes: ReelRoutes = new ReelRoutes(); 
 
-export default reelsRoutes.router;
+export default reelRoutes.router;

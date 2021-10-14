@@ -29,7 +29,7 @@ class UsuarioController implements ICRUDController{
     public async cambiarPerfil(req: express.Request, res: express.Response, next: express.NextFunction){
         try {
             const userId = (req as any).user.usuarioId
-            await usuarioService.cambiarPerfil(userId, parseInt(req.params.perfilId));
+            await usuarioService.cambiarPerfil(userId, req.body);
             return res.status(200).send()   
         } catch (e) {
           next(e)

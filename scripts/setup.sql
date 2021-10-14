@@ -120,39 +120,44 @@ values(7, 'Compra de muebles', 'Palmera.jpg');
 insert into EFS.OBJETIVOS(objetivo_id, descripcion, imagen)
 values(8, 'Personalizado', 'Palmera.jpg');
 
-insert into EFS.SECCIONES (seccion_id, titulo, seccion_padre_id)
-values (1, 'Principiantes', null);
-insert into EFS.SECCIONES (seccion_id, titulo, seccion_padre_id)
-values (2, 'FCI', null);
-insert into EFS.SECCIONES (seccion_id, titulo, seccion_padre_id)
-values (3, 'Acciones', null);
-insert into EFS.SECCIONES (seccion_id, titulo, seccion_padre_id)
-values (4, 'Subseccion 1', 1);
-insert into EFS.SECCIONES (seccion_id, titulo, seccion_padre_id)
-values (5, 'Subseccion 2', 1);
+insert into EFS.GRUPOS (grupo_id, titulo, perfil_id)
+values (1, 'Principiantes', 1);
+insert into EFS.GRUPOS (grupo_id, titulo, perfil_id)
+values (2, 'FCI', 3);
+insert into EFS.GRUPOS (grupo_id, titulo, perfil_id)
+values (3, 'Acciones', 2);
 
 
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 1', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 2', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 3', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 4', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 5', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 6', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 1);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 7', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 2);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 8', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 2);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 9', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4, 3);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 10', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 3);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 11', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 3);
-insert into EFS.REELS(titulo, url, seccion_id, perfil_id)
-values('Video 12', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 5, 2);
+insert into EFS.SECCIONES (seccion_id, titulo, grupo_id)
+values (1, 'Subseccion 1', 1);
+insert into EFS.SECCIONES (seccion_id, titulo, grupo_id)
+values (2, 'Subseccion 2', 1);
+insert into EFS.SECCIONES (seccion_id, titulo, grupo_id)
+values (3, 'Subseccion 3', 2);
+insert into EFS.SECCIONES (seccion_id, titulo, grupo_id)
+values (4, 'Subseccion 4', 3);
+
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 1', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 2', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 3', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 4', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 5', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 6', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 7', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 8', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 9', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 10', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 11', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 12', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);

@@ -4,8 +4,10 @@ import { authenticated } from '../../api/middleware/auth';
 import { UsuarioExistenteError } from '../../error/auth/UsuarioExistenteError';
 import { UsuarioInexistenteError } from '../../error/auth/UsuarioInexistenteError';
 import { INuevoUsuario } from '../../interfaces/usuario/INuevoUsuario';
+import { IPuntaje } from '../../interfaces/usuario/IPuntaje';
 import usuarioMapper from '../../mapper/UsuarioMapper';
-import { Usuario } from '../../model/Models';
+import { Perfil, Usuario } from '../../model/Models';
+import { PerfilMap } from './PerfilMap';
 
 class UsuarioService{
  
@@ -37,9 +39,18 @@ class UsuarioService{
        await usuarioRepository.save(usuarioMapper.mapNuevoUsuario(nuevoUsuario));
     }
 
-    public async cambiarPerfil(userId:number, nuevoPerfil:number){
+    public async cambiarPerfil(userId:number, puntaje:IPuntaje){
         let usuarioRepository = getRepository(Usuario);
-        await usuarioRepository.update({usuarioId: userId}, {perfil: {perfilId : nuevoPerfil}})
+        
+        let perfil= PerfilMap.AGRESIVO
+        
+        if(puntaje.puntaje <= 15){
+            perfil = PerfilMap.CONSERVADOR
+        }else if(puntaje.puntaje <= 24){
+            perfil = PerfilMap.MODERADO
+        }
+
+        await usuarioRepository.update({usuarioId: userId}, {perfil: {perfilId : perfil}})
     }
 
 

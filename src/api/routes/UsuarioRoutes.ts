@@ -15,7 +15,7 @@ class UsuarioRoutes {
 
     config(): void {
         this.router.post('/', usuarioController.create);
-        this.router.put('/perfil/:perfilId', authenticated, usuarioController.cambiarPerfil);
+        this.router.post('/puntaje', authenticated, usuarioController.cambiarPerfil);
     }
 
 }

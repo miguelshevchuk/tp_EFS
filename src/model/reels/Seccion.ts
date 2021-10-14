@@ -1,5 +1,4 @@
 import {
-    PrimaryGeneratedColumn,
     Column,
     Entity,
     ManyToOne,
@@ -7,7 +6,7 @@ import {
     PrimaryColumn,
     OneToMany
   } from 'typeorm'
-import { reelController } from '../../controller/reels/ReelController'
+import { Grupo } from './Grupo';
 import { Reel } from './Reel'
 
 @Entity({
@@ -24,16 +23,13 @@ export class Seccion {
     })
     titulo!: string
 
-  
-    @Column({
-        name: 'seccion_padre_id',
-        nullable: true
-    })
-    @ManyToOne(() => Seccion)
-    @JoinColumn({name: 'seccion_padre_id'})
-    seccionPadre!: Seccion    
-
     @OneToMany(() => Reel, reel => reel.seccion)
     reels!: Reel[];  
- 
+  
+    @Column({
+        name: 'grupo_id'
+    })
+    @ManyToOne(() => Grupo)
+    @JoinColumn({name: 'grupo_id'})
+    grupo: Grupo;
 }

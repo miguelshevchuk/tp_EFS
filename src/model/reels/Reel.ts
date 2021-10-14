@@ -34,13 +34,5 @@ export class Reel {
     @ManyToOne(() => Seccion)
     @JoinColumn({name: 'seccion_id'})
     seccion!: Seccion
-
-    @Column({
-        name: 'perfil_id'
-    })
-    @ManyToOne(() => Perfil)
-    @JoinColumn({name: 'perfil_id'})
-    perfilRecomendado!: Perfil
-    
  
 }

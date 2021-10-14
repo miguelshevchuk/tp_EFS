@@ -9,7 +9,8 @@ class UsuarioMapper{
         "password": "password",
         "email": "email",
         "sexo": "sexo.sexoId",
-        "edad": "edad"
+        "edad": "edad",
+        "nombreApellido": "nombreApellido"
       };
 
     public mapNuevoUsuario : (nuevoUsuario:INuevoUsuario) => Usuario = function(nuevoUsuario){

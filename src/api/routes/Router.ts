@@ -6,6 +6,7 @@ import ObjetivoRoutes from "./ObjetivoRoutes"
 import ReelsRoutes from "./ReelsRoutes"
 import LikeRoutes from "./LikeRoutes"
 import FavoritoRoutes from "./FavoritoRoutes"
+import ReelRoutes from "./ReelRoutes"
 
 class Routes {
 
@@ -23,6 +24,7 @@ class Routes {
         this.Router.use('/reels', ReelsRoutes);
         this.Router.use('/reel/like', LikeRoutes);
         this.Router.use('/reel/favorito', FavoritoRoutes);
+        this.Router.use('/reel', ReelRoutes);
     }
 
 }

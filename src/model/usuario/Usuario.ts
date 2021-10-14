@@ -34,6 +34,11 @@ export class Usuario {
         name: 'edad'
     })
     edad!: number
+ 
+    @Column({
+        name: 'nombre_apellido'
+    })
+    nombreApellido!: string
      
     
     @Column({
