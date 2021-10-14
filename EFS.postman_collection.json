@@ -82,18 +82,27 @@
 			"response": []
 		},
 		{
-			"name": "perfil",
+			"name": "puntaje",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzMzkwMzc4OCwiZXhwIjoxNjMzOTkwMTg4fQ.Tn1yKVVGZ5dfIP8MPgmiO-lPfVJPWXNqDDJZ_KLp6ck",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjIsImlhdCI6MTYzNDE2ODkzMCwiZXhwIjoxNjM0MjU1MzMwfQ.UXmAt6ztEriTTdiSeZYWV0uTi0brEW0-Y66cCVNJw4M",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"puntaje\": 10\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/usuario/perfil/3",
+					"raw": "http://{{HOST}}:{{PORT}}/usuario/puntaje",
 					"protocol": "http",
 					"host": [
 						"{{HOST}}"
@@ -101,15 +110,14 @@
 					"port": "{{PORT}}",
 					"path": [
 						"usuario",
-						"perfil",
-						"3"
+						"puntaje"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "My Reels",
+			"name": "grupos",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -118,11 +126,55 @@
 			"response": []
 		},
 		{
-			"name": "My Reels by seccion",
+			"name": "My Reels by grupo",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": null
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDE3MzQ4NSwiZXhwIjoxNjM0MjU5ODg1fQ.hZ3JdUV51mUuD3sYfIuWj9VA3m6cUbrqhFDLL-ieY7I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reels/grupo/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reels",
+						"grupo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reel",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDE3MzQ4NSwiZXhwIjoxNjM0MjU5ODg1fQ.hZ3JdUV51mUuD3sYfIuWj9VA3m6cUbrqhFDLL-ieY7I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reel/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reel",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
