@@ -1,5 +1,5 @@
-import { INuevoUsuario } from "../interfaces/usuario/INuevoUsuario";
-import { Usuario } from "../model/Models";
+import { INuevoUsuario } from "../../interfaces/usuario/INuevoUsuario";
+import { Usuario } from "../../model/Models";
 
 var objectMapper = require('object-mapper');
 

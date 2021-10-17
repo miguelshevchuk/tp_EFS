@@ -1,12 +1,11 @@
 
 import { getRepository } from 'typeorm'
-import { authenticated } from '../../api/middleware/auth';
 import { UsuarioExistenteError } from '../../error/auth/UsuarioExistenteError';
 import { UsuarioInexistenteError } from '../../error/auth/UsuarioInexistenteError';
 import { INuevoUsuario } from '../../interfaces/usuario/INuevoUsuario';
 import { IPuntaje } from '../../interfaces/usuario/IPuntaje';
-import usuarioMapper from '../../mapper/UsuarioMapper';
-import { Perfil, Usuario } from '../../model/Models';
+import usuarioMapper from '../mapper/UsuarioMapper';
+import { Usuario } from '../../model/Models';
 import { PerfilMap } from './PerfilMap';
 
 class UsuarioService{

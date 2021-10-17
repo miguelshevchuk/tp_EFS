@@ -132,7 +132,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDE3MzQ4NSwiZXhwIjoxNjM0MjU5ODg1fQ.hZ3JdUV51mUuD3sYfIuWj9VA3m6cUbrqhFDLL-ieY7I",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDQ4MTE1NywiZXhwIjoxNjM0NTY3NTU3fQ.qJ60PkLRcJBsnT9gxdzQYHxV4H9Uz8mtBIcJ4EVvByo",
 						"type": "text"
 					}
 				],
@@ -153,13 +153,40 @@
 			"response": []
 		},
 		{
+			"name": "Reels Populares",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDQ4NDEyMiwiZXhwIjoxNjM0NTcwNTIyfQ.TvkFdZ3Vs4ByFlmLHh1MaRtBI6MWQEYROB0fMMywGFA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/reels/populares/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"reels",
+						"populares",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "reel",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDE3MzQ4NSwiZXhwIjoxNjM0MjU5ODg1fQ.hZ3JdUV51mUuD3sYfIuWj9VA3m6cUbrqhFDLL-ieY7I",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDQ4NDEyMiwiZXhwIjoxNjM0NTcwNTIyfQ.TvkFdZ3Vs4ByFlmLHh1MaRtBI6MWQEYROB0fMMywGFA",
 						"type": "text"
 					}
 				],

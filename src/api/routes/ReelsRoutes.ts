@@ -16,6 +16,7 @@ class ReelsRoutes {
     config(): void {
         this.router.get('/grupos',authenticated, reelController.getGrupos);
         this.router.get('/grupo/:grupoId',authenticated, reelController.getMyReelsBySeccion);
+        this.router.get('/populares/:grupoId',authenticated, reelController.getPopularReels);
     }
 
 }

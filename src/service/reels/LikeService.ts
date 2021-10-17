@@ -2,7 +2,7 @@
 import { getRepository, Repository } from 'typeorm'
 import { Like} from '../../model/Models';
 import { ILike } from '../../interfaces/reels/ILike';
-import reelMapper from '../../mapper/ReelMapper';
+import reelMapper from '../mapper/ReelMapper';
 
 class LikeService{
 

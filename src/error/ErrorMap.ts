@@ -19,4 +19,5 @@ export const ErrorMap: MapError = {
     JWT_CREATE: new ErrorType("Error al generar el token"),
     USUARIO_INEXISTENTE: new ErrorType("Usuario Invalido", 401),
     USUARIO_EXISTENTE: new ErrorType("El email ya se encuentra en uso", 400),
+    CLOUDINARY_ERROR: new ErrorType("Ocurrio un error al procesar el reel", 500),
 }

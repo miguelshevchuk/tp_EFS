@@ -2,7 +2,7 @@
 import { getRepository } from 'typeorm'
 import { INuevoObjetivo } from '../../interfaces/usuario/INuevoObjetivo';
 import { INuevoObjetivoPersonalizado } from '../../interfaces/usuario/INuevoObjetivoPersonalizado';
-import UsuarioObjetivoMapper from '../../mapper/UsuarioObjetivoMapper';
+import UsuarioObjetivoMapper from '../mapper/UsuarioObjetivoMapper';
 import { Objetivo, UsuarioObjetivo } from '../../model/Models';
 
 class ObjetivoService{

@@ -1,13 +1,9 @@
 
-import { getRepository, IsNull } from 'typeorm'
-import { ILogin } from '../../interfaces/usuario/ILogin';
-import { Favorito, Grupo, Like, Reel, Seccion, Usuario } from '../../model/Models';
-import { CredencialesInvalidasError } from '../../error/auth/CredencialesInvalidasError';
-import { jwtService } from '../jwt/JwtService';
-import { IJwtUnsigned } from '../../interfaces/jwt/IJwtUnsigned';
-import usuarioService from '../usuario/UsuarioService';
-import reelMapper from '../../mapper/ReelMapper';
-import { ReelDTO } from '../../dto/reels/ReelDTO';
+import { getRepository } from 'typeorm'
+import { Favorito, Grupo, Like, PopularReel, Reel, Seccion } from '../../model/Models';
+import { ReelDetailDTO } from '../../dto/reels/ReelDetailDTO';
+import cloudinaryService from '../cloudinary/CloudinaryService';
+import reelMapper from '../mapper/ReelMapper';
 
 class ReelService{
  
@@ -23,10 +19,23 @@ class ReelService{
 
         let seccionRepository = getRepository(Seccion);
 
-        return seccionRepository.createQueryBuilder('s')
+        let secciones =  await seccionRepository.createQueryBuilder('s')
             .innerJoinAndSelect('s.reels', 'r')
             .innerJoinAndSelect('s.grupo', 'g')
             .where('g.grupoId = :grupoId', { grupoId: grupo })
+            .getMany();
+
+        return reelMapper.mapSecciones(secciones)
+
+    }
+
+    public async getPopularReels(grupo:number){
+
+        let popularReelRepository = getRepository(PopularReel);
+
+        return await popularReelRepository.createQueryBuilder()
+            .where("grupoId = :grupoId", { grupoId: grupo })
+            .limit(10)
             .getMany()
 
     }
@@ -43,7 +52,9 @@ class ReelService{
 
         let esFavorito = (favorito)?true : false
 
-        return new ReelDTO(reel, (like && like.like), esFavorito)
+        let reelUrl = await cloudinaryService.uploadReel(reel)
+
+        return new ReelDetailDTO(reel, (like && like.like), esFavorito, reelUrl)
 
     }
 

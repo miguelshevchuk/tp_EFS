@@ -2,16 +2,10 @@ import { Reel } from "../../model/Models"
 
 export class ReelDTO{
 
-    reelId:number
-    like:Boolean
-    favorito:Boolean
+    reelId:Number
     titulo:string
 
-    constructor(reel:Reel,
-        like:Boolean,
-        favorito:Boolean){
-            this.favorito = favorito
-            this.like = like
+    constructor(reel:Reel){
             this.reelId = reel.reelId
             this.titulo = reel.titulo
     }

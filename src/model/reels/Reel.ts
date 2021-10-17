@@ -3,10 +3,8 @@ import {
     Column,
     Entity,
     ManyToOne,
-    JoinColumn,
-    PrimaryColumn
+    JoinColumn
   } from 'typeorm'
-import { Perfil } from '../Models'
 import { Seccion } from './Seccion'
 
 @Entity({
@@ -24,9 +22,14 @@ export class Reel {
     titulo!: string
 
     @Column({
-        name: 'url'
+        name: 'nombre_archivo'
     })
-    url!: string
+    nombreArchivo!: string
+
+    @Column({
+        name: 'ubicacion'
+    })
+    ubicacion!: string
   
     @Column({
         name: 'seccion_id'

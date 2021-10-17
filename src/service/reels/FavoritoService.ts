@@ -2,7 +2,7 @@
 import { getRepository } from 'typeorm'
 import { Favorito} from '../../model/Models';
 import { IFavorito } from '../../interfaces/reels/IFavorito';
-import reelMapper from '../../mapper/ReelMapper';
+import reelMapper from '../mapper/ReelMapper';
 
 class FavoritoService{
  

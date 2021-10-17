@@ -38,6 +38,15 @@ class ReelController implements ICRUDController{
         }
     }
 
+    public async getPopularReels (req: express.Request, res: express.Response, next: express.NextFunction) {   
+        try {
+            let reels = await reelService.getPopularReels(parseInt(req.params.grupoId));
+            return res.status(200).send(reels)   
+        } catch (e) {
+          next(e)
+        }
+    }
+
 }
 
 export const reelController = new ReelController();
