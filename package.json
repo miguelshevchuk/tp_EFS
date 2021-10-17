@@ -2,9 +2,9 @@
   "name": "EFSService",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node build/app.js",
+    "start": "node build/index.js",
     "build": "tsc",
     "dev": "nodemon -L",
     "prettier:write": "prettier --config .prettierrc.json --write src/**/*.ts"
@@ -14,7 +14,7 @@
       "src"
     ],
     "ext": "ts",
-    "exec": "ts-node src/app.ts"
+    "exec": "ts-node src/index.ts"
   },
   "husky": {
     "hooks": {
