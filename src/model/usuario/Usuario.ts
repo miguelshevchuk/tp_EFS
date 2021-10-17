@@ -10,7 +10,6 @@ import { Perfil } from './Perfil'
 import { Sexo } from './Sexo'
 
 @Entity({
-    schema : 'efs',
     name : 'USUARIOS'
 })
 @Unique(["email"])

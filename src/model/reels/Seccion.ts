@@ -10,7 +10,6 @@ import { Grupo } from './Grupo';
 import { Reel } from './Reel'
 
 @Entity({
-    schema : 'efs',
     name : 'SECCIONES'
 })
 export class Seccion {

@@ -7,7 +7,6 @@ import {
   } from 'typeorm'
 
 @Entity({
-    schema : 'efs',
     name : 'SEXOS'
 })
 export class Sexo {

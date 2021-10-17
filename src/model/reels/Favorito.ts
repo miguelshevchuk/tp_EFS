@@ -10,7 +10,6 @@ import {  Usuario } from '../Models'
 import { Reel } from './Reel'
 
 @Entity({
-    schema : 'efs',
     name : 'FAVORITOS'
 })
 @Unique(["reel", "usuario"])

@@ -6,7 +6,6 @@ import {
 import { Like } from '../Models'
 
 @ViewEntity({
-    schema : 'EFS',
     name: "VW_POPULAR_REELS",
     expression: (connection: Connection) => connection.createQueryBuilder()
             .select("r.reelId", "reelId")        
@@ -17,9 +16,10 @@ import { Like } from '../Models'
             .innerJoin('l.reel', 'r')
             .innerJoin('r.seccion', 's')
             .innerJoin('s.grupo', 'g')
-            .where("l.like = 1")
+            .where("l.like = true")
             .groupBy('r.reelId')
-            .orderBy("cantidadLikes", "DESC")
+            .addGroupBy("r.titulo")
+            .addGroupBy("g.grupoId")
             
 })
 export class PopularReel {

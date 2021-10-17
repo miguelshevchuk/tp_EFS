@@ -8,7 +8,6 @@ import {
 import { Perfil } from '../Models'
 
 @Entity({
-    schema : 'efs',
     name : 'GRUPOS'
 })
 export class Grupo {

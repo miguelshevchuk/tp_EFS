@@ -5,7 +5,6 @@ import {
   } from 'typeorm'
 
 @Entity({
-    schema : 'efs',
     name : 'PERFILES'
 })
 export class Perfil {

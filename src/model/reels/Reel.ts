@@ -8,7 +8,6 @@ import {
 import { Seccion } from './Seccion'
 
 @Entity({
-    schema : 'efs',
     name : 'REELS'
 })
 export class Reel {

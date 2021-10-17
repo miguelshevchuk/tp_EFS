@@ -10,7 +10,6 @@ import { Usuario } from '../Models';
 import { Objetivo } from './Objetivo';
 
 @Entity({
-    schema : 'efs',
     name : 'USUARIOS_OBJETIVO'
 })
 export class UsuarioObjetivo {
