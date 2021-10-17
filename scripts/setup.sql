@@ -96,6 +96,18 @@ CREATE TABLE EFS.LIKES (
   CONSTRAINT `FK_fb045d50a23c841e0b47d9fa1e8` FOREIGN KEY (`reel_id`) REFERENCES `REELS` (`reel_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `EFS`.`VW_POPULAR_REELS` AS 
+select `r`.`reel_id` AS `reelId`,`r`.`titulo` AS `titulo`,`g`.`grupo_id` AS `grupoId`,count(1) AS `cantidadLikes` 
+from (((`EFS`.`LIKES` `l` 
+join `EFS`.`REELS` `r` on((`r`.`reel_id` = `l`.`reel_id`))) 
+join `EFS`.`SECCIONES` `s` on((`s`.`seccion_id` = `r`.`seccion_id`))) 
+join `EFS`.`GRUPOS` `g` on((`g`.`grupo_id` = `s`.`grupo_id`))) 
+where (`l`.`like` = 1) 
+group by `r`.`reel_id` 
+order by `cantidadLikes` desc;
+
+
+
 insert into EFS.SEXOS (sexo_id, descripcion)
 values ('M', 'Masculino');
 insert into EFS.SEXOS (sexo_id, descripcion)
