@@ -17,9 +17,11 @@ export class CloudinaryService {
 
   public async uploadReel(reel: Reel): Promise<string> {
 
+//deprecated
+
     try {
-      const reelUpload = await v2.uploader.upload(this.baseFile+reel.ubicacion+reel.nombreArchivo, {
-        folder: reel.ubicacion,
+      const reelUpload = await v2.uploader.upload(this.baseFile+"images.png", {
+        folder: "reel.ubicacion",
         unique_filename: true,
         use_filename: true,
         access_mode: 'public',

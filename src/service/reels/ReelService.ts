@@ -52,9 +52,7 @@ class ReelService{
 
         let esFavorito = (favorito)?true : false
 
-        let reelUrl = await cloudinaryService.uploadReel(reel)
-
-        return new ReelDetailDTO(reel, (like && like.like), esFavorito, reelUrl)
+        return new ReelDetailDTO(reel, (like && like.like), esFavorito)
 
     }
 

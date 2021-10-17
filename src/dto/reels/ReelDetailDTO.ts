@@ -10,13 +10,12 @@ export class ReelDetailDTO{
 
     constructor(reel:Reel,
         like:Boolean,
-        favorito:Boolean,
-        url:string){
+        favorito:Boolean){
             this.favorito = favorito
             this.like = like
             this.reelId = reel.reelId
             this.titulo = reel.titulo
-            this.url = url
+            this.url = reel.url
     }
 
 }

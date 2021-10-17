@@ -65,13 +65,12 @@ CREATE TABLE EFS.SECCIONES (
 CREATE TABLE EFS.REELS (
   `reel_id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
-  `nombre_archivo` varchar(255) NOT NULL,
-  `ubicacion` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
   `seccion_id` int NOT NULL,
   PRIMARY KEY (`reel_id`),
   KEY `FK_6caa3fcaec9675161a75eaa4dc4` (`seccion_id`),
   CONSTRAINT `FK_6caa3fcaec9675161a75eaa4dc4` FOREIGN KEY (`seccion_id`) REFERENCES `SECCIONES` (`seccion_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE EFS.FAVORITOS (
   `favorito_id` int NOT NULL AUTO_INCREMENT,
@@ -154,27 +153,27 @@ values (3, 'Subseccion 3', 2);
 insert into EFS.SECCIONES (seccion_id, titulo, grupo_id)
 values (4, 'Subseccion 4', 3);
 
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 1', 'beginner/financial_cost/', 'images.png', 1);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 2', 'beginner/financial_cost/', 'images.png', 1);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 3', 'beginner/financial_cost/', 'images.png', 1);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 4', 'beginner/financial_cost/', 'images.png', 2);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 5', 'beginner/financial_cost/', 'images.png', 2);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 6', 'beginner/financial_cost/', 'images.png', 2);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 7', 'beginner/financial_cost/', 'images.png', 3);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 8', 'beginner/financial_cost/', 'images.png', 3);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 9', 'beginner/financial_cost/', 'images.png', 3);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 10', 'beginner/financial_cost/', 'images.png', 4);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 11', 'beginner/financial_cost/', 'images.png', 4);
-insert into EFS.REELS(titulo, ubicacion, nombre_archivo, seccion_id)
-values('Video 12', 'beginner/financial_cost/', 'images.png', 4);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 1', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 2', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 3', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 1);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 4', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 5', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 6', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 2);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 7', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 8', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 9', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 3);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 10', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 11', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);
+insert into EFS.REELS(titulo, url, seccion_id)
+values('Video 12', 'https://www.youtube.com/watch?v=Ahv1v1xQaLo', 4);

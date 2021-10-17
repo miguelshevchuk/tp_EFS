@@ -22,14 +22,9 @@ export class Reel {
     titulo!: string
 
     @Column({
-        name: 'nombre_archivo'
+        name: 'url'
     })
-    nombreArchivo!: string
-
-    @Column({
-        name: 'ubicacion'
-    })
-    ubicacion!: string
+    url!: string
   
     @Column({
         name: 'seccion_id'
