@@ -13,9 +13,15 @@ app.use(Router)
 app.use(errorHandler)
 
 const port = process.env.PORT || 3000
+const env = process.env.ENV || "PROD"
 
+let configuracionBD = dbConfig.configProd
 
-createConnection(dbConfig)
+if(env === "DEV"){
+  configuracionBD = dbConfig.configDev
+}
+
+createConnection(configuracionBD)
   .then((_connection) => {
     app.listen(port, () => {
       console.log('Escuchando Puerto: ' + port)
