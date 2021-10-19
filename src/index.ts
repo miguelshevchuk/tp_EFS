@@ -13,7 +13,7 @@ app.use(Router)
 app.use(errorHandler)
 
 const port = process.env.PORT || 3000
-const env = process.env.ENV || "PROD"
+const env = process.env.ENV || "DEV"
 
 let configuracionBD = dbConfig.configProd
 
