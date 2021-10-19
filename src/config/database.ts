@@ -19,8 +19,7 @@ const configProd: ConnectionOptions = {
   url: process.env.DATABASE_URL,
   entities: Object.values(Models),
   synchronize: true,
-  logger:'debug',
-  ssl:false
+  logger:'debug'
 
 }
 
