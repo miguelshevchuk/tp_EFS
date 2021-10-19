@@ -12,7 +12,7 @@ app.use(morgan('tiny'))
 app.use(Router)
 app.use(errorHandler)
 
-const port = process.env.PORT || 3000
+const port = process.env.CUSTOM_PORT || 3000
 const env = process.env.ENV || "DEV"
 
 let configuracionBD = dbConfig.configProd
