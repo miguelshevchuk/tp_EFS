@@ -33,10 +33,11 @@ class ReelService{
 
         let popularReelRepository = getRepository(PopularReel);
 
-        return await popularReelRepository.createQueryBuilder()
-            .where("grupoId = :grupoId", { grupoId: grupo })
+        
+        return await popularReelRepository.createQueryBuilder('pr')
+            .where('pr.grupoId = :grupoId', { grupoId: grupo })
             .limit(10)
-            .orderBy("cantidadLikes", "DESC")
+            .orderBy('pr.cantidadLikes', "DESC")
             .getMany()
 
     }
