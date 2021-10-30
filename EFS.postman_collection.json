@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"prueba2\",\r\n    \"password\": \"aguanteRiver\",\r\n    \"edad\": 28,\r\n    \"sexo\": \"M\"\r\n}",
+					"raw": "{\r\n    \"email\": \"hola@gmail.com\",\r\n    \"password\": \"aguanteRiver\",\r\n    \"edad\": 28,\r\n    \"sexo\": \"M\",\r\n    \"nombreApellido\": \"Miguel Shevchuk\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,12 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/usuario/",
-					"protocol": "http",
+					"raw": "{{URL}}/usuario/",
 					"host": [
-						"{{HOST}}"
+						"{{URL}}"
 					],
-					"port": "{{PORT}}",
 					"path": [
 						"usuario",
 						""
@@ -126,27 +124,34 @@
 			"response": []
 		},
 		{
+			"name": "monedas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
 			"name": "My Reels by grupo",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDQ4MTE1NywiZXhwIjoxNjM0NTY3NTU3fQ.qJ60PkLRcJBsnT9gxdzQYHxV4H9Uz8mtBIcJ4EVvByo",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNTYxOTA1MCwiZXhwIjoxNjM1NzA1NDUwfQ.l4aUqPPlQ1cm9KIBQA9bpgtbT7kCUywoo9Gkl9-tNfU",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/reels/grupo/1",
-					"protocol": "http",
+					"raw": "{{URL}}/reels/grupo/2",
 					"host": [
-						"{{HOST}}"
+						"{{URL}}"
 					],
-					"port": "{{PORT}}",
 					"path": [
 						"reels",
 						"grupo",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -186,20 +191,43 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDQ4NDEyMiwiZXhwIjoxNjM0NTcwNTIyfQ.TvkFdZ3Vs4ByFlmLHh1MaRtBI6MWQEYROB0fMMywGFA",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNDYwNDYwMiwiZXhwIjoxNjM0NjkxMDAyfQ.-fXT2uDi2JbzWbbkERPfwVoPq--xEbOqoU3uS7Gf1HQ",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/reel/1",
-					"protocol": "http",
+					"raw": "{{URL}}/reel/1",
 					"host": [
-						"{{HOST}}"
+						"{{URL}}"
 					],
-					"port": "{{PORT}}",
 					"path": [
 						"reel",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "visualizacion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjUsImlhdCI6MTYzNTYxODQ3MCwiZXhwIjoxNjM1NzA0ODcwfQ.InSPUOQDfSO04jclmV-Xadjz3y3pWpTrcNQ2wc6yIDA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/reel/visualizacion/5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"reel",
+						"visualizacion",
+						"5"
 					]
 				}
 			},
