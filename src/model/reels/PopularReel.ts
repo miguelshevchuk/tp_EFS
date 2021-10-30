@@ -11,6 +11,7 @@ import { Like } from '../Models'
             .select("r.reelId", "reelId")        
             .addSelect("r.titulo", "titulo")
             .addSelect("g.grupoId", "grupoId")
+            .addSelect("r.imagen", "imagen")
             .addSelect("COUNT(1)", "cantidadLikes")
             .from(Like, "l")
             .innerJoin('l.reel', 'r')
@@ -36,4 +37,6 @@ export class PopularReel {
     @ViewColumn()
     cantidadLikes!: number
  
+    @ViewColumn()
+    imagen!: number
 }

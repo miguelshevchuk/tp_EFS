@@ -5,7 +5,7 @@ import { UsuarioInexistenteError } from '../../error/auth/UsuarioInexistenteErro
 import { INuevoUsuario } from '../../interfaces/usuario/INuevoUsuario';
 import { IPuntaje } from '../../interfaces/usuario/IPuntaje';
 import usuarioMapper from '../mapper/UsuarioMapper';
-import { Usuario } from '../../model/Models';
+import { Usuario, UsuarioGrupo, UsuarioMonedas } from '../../model/Models';
 import { PerfilMap } from './PerfilMap';
 
 class UsuarioService{
@@ -29,13 +29,23 @@ class UsuarioService{
 
         let usuarioExistente = await usuarioRepository.findOne({email : nuevoUsuario.email});
 
-        console.log(usuarioExistente)
-
         if(usuarioExistente){
             throw new UsuarioExistenteError()
         }
 
-       await usuarioRepository.save(usuarioMapper.mapNuevoUsuario(nuevoUsuario));
+       let usuarioCreado = await usuarioRepository.save(usuarioMapper.mapNuevoUsuario(nuevoUsuario));
+       this.asignarMonedasIniciales(usuarioCreado);
+       this.asignarGrupoPrincipiante(usuarioCreado);
+    }
+
+    private async asignarMonedasIniciales(usuario:Usuario){
+        let usuarioMonedasRepository = getRepository(UsuarioMonedas);
+        await usuarioMonedasRepository.save(usuarioMapper.mapNuevoUsuarioMonedas(usuario))
+    }
+
+    private async asignarGrupoPrincipiante(usuario:Usuario){
+        let usuarioGrupoRepository = getRepository(UsuarioGrupo);
+        await usuarioGrupoRepository.save(usuarioMapper.mapNuevoUsuarioGrupo(usuario))
     }
 
     public async cambiarPerfil(userId:number, puntaje:IPuntaje){
@@ -50,6 +60,31 @@ class UsuarioService{
         }
 
         await usuarioRepository.update({usuarioId: userId}, {perfil: {perfilId : perfil}})
+    }
+
+    private async getUsuarioMonedas(userId:number){
+        let usuarioMonedasRepository = getRepository(UsuarioMonedas);
+
+        return await usuarioMonedasRepository.createQueryBuilder('um')
+        .leftJoinAndSelect('um.usuario', 'u')
+        .where('u.usuarioId = :id', { id: userId })
+        .getOne();
+    }
+
+    public async getMonedasDelUsuario(userId:number){
+
+        let usuarioMonedas =  await this.getUsuarioMonedas(userId)
+
+        return usuarioMapper.mapMonedasDTO(usuarioMonedas);
+    }
+
+    public async agregarMonedas(userId:number, monedas:number){
+        let usuarioMonedas =  await this.getUsuarioMonedas(userId)
+
+        let usuarioMonedasRepository = getRepository(UsuarioMonedas);
+        await usuarioMonedasRepository.update({usuarioMonedasId: usuarioMonedas.usuarioMonedasId}, 
+            {monedas: usuarioMonedas.monedas + monedas})
+
     }
 
 

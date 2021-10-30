@@ -15,6 +15,7 @@ class ReelRoutes {
 
     config(): void {
         this.router.get('/:reelId',authenticated, reelController.getOne);
+        this.router.post('/visualizacion/:reelId',authenticated, reelController.agregarVisualizacion);
     }
 
 }

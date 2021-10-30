@@ -1,9 +1,10 @@
 
 import { getRepository } from 'typeorm'
-import { Favorito, Grupo, Like, PopularReel, Reel, Seccion } from '../../model/Models';
+import { Favorito, Grupo, Like, PopularReel, Reel, Seccion, UsuarioGrupo, Visualizacion } from '../../model/Models';
 import { ReelDetailDTO } from '../../dto/reels/ReelDetailDTO';
-import cloudinaryService from '../cloudinary/CloudinaryService';
 import reelMapper from '../mapper/ReelMapper';
+import { UsuarioSinGrupoError } from '../../error/reel/UsuarioSinGrupoError';
+import usuarioService from '../usuario/UsuarioService';
 
 class ReelService{
  
@@ -15,18 +16,36 @@ class ReelService{
 
     }
 
-    public async getMyReelsBySeccion(grupo:number){
+    public async getMyReelsBySeccion(grupo:number, usuario:number){
+
+        await this.verificarGrupo(grupo, usuario)
 
         let seccionRepository = getRepository(Seccion);
 
         let secciones =  await seccionRepository.createQueryBuilder('s')
             .innerJoinAndSelect('s.reels', 'r')
             .innerJoinAndSelect('s.grupo', 'g')
+            .innerJoinAndSelect('r.clasificacion', 'c')
             .where('g.grupoId = :grupoId', { grupoId: grupo })
             .getMany();
 
         return reelMapper.mapSecciones(secciones)
 
+    }
+
+    private async verificarGrupo(grupo:number, usuarioId:number){
+        let usuarioGrupoRepository = getRepository(UsuarioGrupo);
+
+        let usuarioGrupo = await usuarioGrupoRepository.createQueryBuilder('ug')
+            .innerJoinAndSelect('ug.usuario', 'u')
+            .innerJoinAndSelect('ug.grupo', 'g')
+            .where('g.grupoId = :grupoId', { grupoId: grupo })
+            .andWhere('u.usuarioId = :usuarioId', { usuarioId: usuarioId })
+            .getOne();
+
+        if(!usuarioGrupo){
+            throw new UsuarioSinGrupoError();
+        }
     }
 
     public async getPopularReels(grupo:number){
@@ -58,7 +77,33 @@ class ReelService{
 
     }
 
+    public async agregarVisualizacion(userId:number, reelId:number){
+
+        let visualizacionRepository = getRepository(Visualizacion);
+
+        let visualizacionesPrevias = await visualizacionRepository.find({usuario : {usuarioId : userId}, reel: {reelId : reelId}})
+
+        console.log(visualizacionesPrevias)
+        await visualizacionRepository.save(reelMapper.mapVisualizacion(reelId, userId))
+
+        if(!visualizacionesPrevias || visualizacionesPrevias.length ===0){
+            this.agregarMonedasPorVisualizacion(userId, reelId)
+        }
+
+    }
     
+    private async agregarMonedasPorVisualizacion(userId:number, reelId:number){
+
+        let reelRepository = getRepository(Reel);
+
+        let reel = await reelRepository.createQueryBuilder('r')
+            .innerJoinAndSelect('r.clasificacion', 'c')
+            .where('r.reelId = :reelId', { reelId: reelId })
+            .getOne();
+
+        usuarioService.agregarMonedas(userId, reel.clasificacion.monedas)
+
+    }
 
 }
 

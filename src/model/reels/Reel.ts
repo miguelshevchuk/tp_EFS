@@ -5,6 +5,7 @@ import {
     ManyToOne,
     JoinColumn
   } from 'typeorm'
+import { Clasificacion } from './Clasificacion'
 import { Seccion } from './Seccion'
 
 @Entity({
@@ -24,6 +25,11 @@ export class Reel {
         name: 'url'
     })
     url!: string
+
+    @Column({
+        name: 'imagen'
+    })
+    imagen!: string
   
     @Column({
         name: 'seccion_id'
@@ -32,4 +38,11 @@ export class Reel {
     @JoinColumn({name: 'seccion_id'})
     seccion!: Seccion
  
+    @Column({
+        name: 'clasificacion_id'
+    })
+    @ManyToOne(() => Clasificacion)
+    @JoinColumn({name: 'clasificacion_id'})
+    clasificacion!: Clasificacion
+
 }

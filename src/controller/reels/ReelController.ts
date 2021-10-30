@@ -31,7 +31,8 @@ class ReelController implements ICRUDController{
 
     public async getMyReelsBySeccion (req: express.Request, res: express.Response, next: express.NextFunction) {   
         try {
-            let reels = await reelService.getMyReelsBySeccion(parseInt(req.params.grupoId));
+            const userId = (req as any).user.usuarioId
+            let reels = await reelService.getMyReelsBySeccion(parseInt(req.params.grupoId), userId);
             return res.status(200).send(reels)   
         } catch (e) {
           next(e)
@@ -42,6 +43,16 @@ class ReelController implements ICRUDController{
         try {
             let reels = await reelService.getPopularReels(parseInt(req.params.grupoId));
             return res.status(200).send(reels)   
+        } catch (e) {
+          next(e)
+        }
+    }
+
+    public async agregarVisualizacion(req: express.Request, res: express.Response, next: express.NextFunction) {   
+        try {
+            const userId = (req as any).user.usuarioId
+            await reelService.agregarVisualizacion(userId, parseInt(req.params.reelId));
+            return res.status(200).send()   
         } catch (e) {
           next(e)
         }

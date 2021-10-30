@@ -36,6 +36,16 @@ class UsuarioController implements ICRUDController{
         }
     }
 
+    public async getMonedasDelUsuario(req: express.Request, res: express.Response, next: express.NextFunction){
+        try {
+            const userId = (req as any).user.usuarioId
+            let monedas = await usuarioService.getMonedasDelUsuario(userId);
+            return res.status(200).send(monedas)   
+        } catch (e) {
+          next(e)
+        }
+    }
+
 }
 
 export const usuarioController = new UsuarioController();

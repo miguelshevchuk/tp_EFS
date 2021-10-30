@@ -16,6 +16,7 @@ class UsuarioRoutes {
     config(): void {
         this.router.post('/', usuarioController.create);
         this.router.post('/puntaje', authenticated, usuarioController.cambiarPerfil);
+        this.router.get('/monedas', authenticated, usuarioController.getMonedasDelUsuario);
     }
 
 }

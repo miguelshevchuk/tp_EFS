@@ -2,7 +2,7 @@ import { ReelDTO } from "../../dto/reels/ReelDTO";
 import { SeccionDTO } from "../../dto/reels/SeccionDTO";
 import { IFavorito } from "../../interfaces/reels/IFavorito";
 import { ILike } from "../../interfaces/reels/ILike";
-import { Favorito, Like, Reel, Seccion, Usuario } from "../../model/Models";
+import { Favorito, Like, Reel, Seccion, Usuario, Visualizacion } from "../../model/Models";
 
 var objectMapper = require('object-mapper');
 
@@ -36,6 +36,11 @@ class ReelMapper{
         "titulo": "titulo"
     };
 
+    private defvisualizacion = {
+        "reelId": "reel.reelId",
+        "usuarioId": "usuario.usuarioId"
+    };
+
     public mapNuevoLike : (nuevoLike:ILike, usuarioId:string) => Like = function(nuevoLike, usuarioId){
 
         let like =  Object.assign(new Like(), objectMapper(nuevoLike, this.defLikeMapper));
@@ -65,6 +70,15 @@ class ReelMapper{
         }
 
         return seccionesDTO
+
+    }
+
+    public mapVisualizacion : (reelId:number, userId:number) => Visualizacion = function(reelId, userId){
+
+        
+        let mapObject = {usuarioId : userId, reelId : reelId}
+
+        return Object.assign(new Visualizacion(), objectMapper(mapObject, this.defvisualizacion))
 
     }
 

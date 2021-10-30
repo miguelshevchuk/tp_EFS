@@ -21,6 +21,11 @@ export class Grupo {
     titulo!: string
 
     @Column({
+        name: 'precio'
+    })
+    precio!: number
+
+    @Column({
         name: 'perfil_id'
     })
     @ManyToOne(() => Perfil)
