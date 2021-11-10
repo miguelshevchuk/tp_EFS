@@ -83,7 +83,6 @@ class ReelService{
 
         let visualizacionesPrevias = await visualizacionRepository.find({usuario : {usuarioId : userId}, reel: {reelId : reelId}})
 
-        console.log(visualizacionesPrevias)
         await visualizacionRepository.save(reelMapper.mapVisualizacion(reelId, userId))
 
         if(!visualizacionesPrevias || visualizacionesPrevias.length ===0){
@@ -102,6 +101,14 @@ class ReelService{
             .getOne();
 
         usuarioService.agregarMonedas(userId, reel.clasificacion.monedas)
+
+    }
+
+    public async getVisualizacion(userId:number, reelId:number){
+
+        let visualizacionRepository = getRepository(Visualizacion);
+
+        return await visualizacionRepository.find({usuario : {usuarioId : userId}, reel: {reelId : reelId}})
 
     }
 

@@ -30,6 +30,11 @@ export class Reel {
         name: 'imagen'
     })
     imagen!: string
+
+    @Column({
+        name: 'duracion'
+    })
+    duracion!: string
   
     @Column({
         name: 'seccion_id'
