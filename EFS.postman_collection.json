@@ -393,6 +393,15 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "accion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
 		}
 	],
 	"variable": [
