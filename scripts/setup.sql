@@ -55,13 +55,13 @@ values (2, 'Costos Financieros', 1);
 --values (4, 'Subseccion 4', 3);
 
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)
-values('Tarjeta de crédito vs tarjeta de débito', 'https://res.cloudinary.com/efscloud/video/upload/v1634510052/beginner/Banking_tools/Que_son_TD_y_TC_zyfw5m.mp4', 1, 'https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate#/media/Archivo:CA_river_plate_logo.svg', 1, '1:35');
+values('Tarjeta de crédito vs tarjeta de débito', 'https://res.cloudinary.com/efscloud/video/upload/v1634510052/beginner/Banking_tools/Que_son_TD_y_TC_zyfw5m.mp4', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/CA_river_plate_logo.svg/1200px-CA_river_plate_logo.svg.png', 1, '1:35');
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)
-values('Interes simple y compuesto', 'https://res.cloudinary.com/efscloud/video/upload/v1635908930/beginner/Financial_Cost/2._Interes_simple_y_compuesto__vx0i8s.mp4', 2, 'https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate#/media/Archivo:CA_river_plate_logo.svg', 1, '4:46');
+values('Interes simple y compuesto', 'https://res.cloudinary.com/efscloud/video/upload/v1635908930/beginner/Financial_Cost/2._Interes_simple_y_compuesto__vx0i8s.mp4', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/CA_river_plate_logo.svg/1200px-CA_river_plate_logo.svg.png', 1, '4:46');
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)
-values('TNA vs TEA en un plazo fijo', 'https://res.cloudinary.com/efscloud/video/upload/v1634491420/beginner/Financial_Cost/TNA_vs_TEA_en_plazo_fijo_2_arxj9e.mp4', 2, 'https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate#/media/Archivo:CA_river_plate_logo.svg', 1, '4:57');
+values('TNA vs TEA en un plazo fijo', 'https://res.cloudinary.com/efscloud/video/upload/v1634491420/beginner/Financial_Cost/TNA_vs_TEA_en_plazo_fijo_2_arxj9e.mp4', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/CA_river_plate_logo.svg/1200px-CA_river_plate_logo.svg.png', 1, '4:57');
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)
-values('¿Qué es el interes bancario?', 'https://res.cloudinary.com/efscloud/video/upload/v1634503636/beginner/Financial_Cost/Que_es_el_interes_bancario_qtkeji.mp4', 2, 'https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate#/media/Archivo:CA_river_plate_logo.svg', 1, '3:30');
+values('¿Qué es el interes bancario?', 'https://res.cloudinary.com/efscloud/video/upload/v1634503636/beginner/Financial_Cost/Que_es_el_interes_bancario_qtkeji.mp4', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/CA_river_plate_logo.svg/1200px-CA_river_plate_logo.svg.png', 1, '3:30');
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)
 values('CFT - ¿Qué es el Costo Financiero Total?', 'https://res.cloudinary.com/efscloud/video/upload/v1634491465/beginner/Financial_Cost/CFT-Que_es_el_Costo_Financiero_Total_nyw4ls.mp4', 2, 'https://res.cloudinary.com/efscloud/image/upload/v1635908489/beginner/Financial_Cost/CFT_-_Que_es_el_costo_financiero_lwgciy.jpg', 1, '2:31');
 insert into public."REELS"(titulo, url, seccion_id, imagen, clasificacion_id, duracion)

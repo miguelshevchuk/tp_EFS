@@ -4,6 +4,7 @@ import Router from "./api/routes/Router"
 import { createConnection } from 'typeorm'
 import dbConfig from './config/database'
 import { errorHandler } from './api/middleware/errorHandler';
+import precioService from './service/simulador/PrecioService';
 
 const app = express()
 
@@ -23,6 +24,7 @@ if(env === "DEV"){
 
 createConnection(configuracionBD)
   .then((_connection) => {
+    precioService.actualizarPreciosHistoricos()
     app.listen(port, () => {
       console.log('Escuchando Puerto: ' + port)
     })
