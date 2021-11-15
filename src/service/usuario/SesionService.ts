@@ -5,6 +5,8 @@ import { Usuario } from '../../model/Models';
 import { CredencialesInvalidasError } from '../../error/auth/CredencialesInvalidasError';
 import { jwtService } from '../jwt/JwtService';
 import { IJwtUnsigned } from '../../interfaces/jwt/IJwtUnsigned';
+import precioService from '../simulador/PrecioService';
+import { MonedaMap } from '../simulador/MonedaMap';
 
 class SesionService{
  

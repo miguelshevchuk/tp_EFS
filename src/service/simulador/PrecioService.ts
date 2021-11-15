@@ -9,80 +9,112 @@ class PrecioService{
  
     public async actualizarPreciosHistoricos(){
         let preciosHistoricosRepository = getRepository(Precio);
-        let preciosHistoricos = await preciosHistoricosRepository.find({codigo: MonedaMap.BTC})
+        let preciosHistoricos = await preciosHistoricosRepository.find({})
 
         if(!preciosHistoricos || preciosHistoricos.length ===0){
-            console.log("Actualizando valores historicos de "+MonedaMap.BTC);
-            let valoresHistoricos = await yahooFinanceService.getValoresHistoricos(MonedaMap.BTC)
+            let valoresHistoricos = await yahooFinanceService.getValoresHistoricos()
 
-            for(let i =0; i < valoresHistoricos["timestamp"].length; i++){
-                let nuevoPrecio = new Precio(moment.unix(valoresHistoricos["timestamp"][i]).format('YYYY-MM-DD'), valoresHistoricos["close"][i], MonedaMap.BTC)
-                preciosHistoricosRepository.save(nuevoPrecio)
-            }
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.BTC)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.APPLE)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.TESLA)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.GOLD)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.MACDONALDS)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.WALMART)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.ETH)
+            this.guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, MonedaMap.NVIDIA)
 
         }
 
     }
 
-    public async getPrecioActual(){
+    private async guardarValoresHistoricos(valoresHistoricos, preciosHistoricosRepository, codigo:string){
+
+        let valoresHistoricosMoneda = valoresHistoricos[codigo]
+
+        for(let i =0; i < valoresHistoricosMoneda["timestamp"].length; i++){
+            let nuevoPrecio = new Precio(moment.unix(valoresHistoricosMoneda["timestamp"][i]).format('YYYY-MM-DD'), valoresHistoricosMoneda["close"][i], codigo)
+            preciosHistoricosRepository.save(nuevoPrecio)
+        }
+    }
+
+    public async getPrecioActual(codigo:string){
 
         let preciosRepository = getRepository(Precio);
 
         let precioActual = await preciosRepository.createQueryBuilder('p')
             .where('p.fecha = :fecha', { fecha: moment().format('YYYY-MM-DD') })
-            .andWhere('p.codigo = :codigo', { codigo: MonedaMap.BTC})
+            .andWhere('p.codigo = :codigo', { codigo: codigo})
             .getOne();
 
         if(!precioActual){
-            console.log("Agregando valor del dia de "+MonedaMap.BTC)
-            let valorActual = await yahooFinanceService.getValorActual(MonedaMap.BTC)
+            let valoresActuales = await yahooFinanceService.getValorActual()
 
-            await this.guardarPrecioDeHoy(preciosRepository, valorActual)
-            await this.actualizarPrecioDeCierre(preciosRepository, valorActual)
+            await this.guardarPrecioDeHoy(preciosRepository, valoresActuales)
+            await this.actualizarPrecioDeCierre(preciosRepository, valoresActuales)
             
         }else{
             if(precioActual.ultimaActualizacion < moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')){
-                await this.actualizarPrecioDeHoy(preciosRepository, precioActual)
+                await this.actualizarPrecioDeHoy(preciosRepository)
+            }else{
+                return precioActual
             }
         }
 
         precioActual = await preciosRepository.createQueryBuilder('p')
             .where('p.fecha = :fecha', { fecha: moment().format('YYYY-MM-DD') })
-            .andWhere('p.codigo = :codigo', { codigo: MonedaMap.BTC})
+            .andWhere('p.codigo = :codigo', { codigo: codigo})
             .getOne();
 
         return precioActual
 
     }
 
-    private async guardarPrecioDeHoy(preciosRepository, valorActual){
-        console.log("Agregando valor del dia de "+MonedaMap.BTC)
+    private async guardarPrecioDeHoy(preciosRepository, valoresActuales){
 
-        let precioActual = new Precio(moment.unix(valorActual["regularMarketTime"]).format('YYYY-MM-DD'), valorActual["regularMarketPrice"], MonedaMap.BTC)
-        await preciosRepository.save(precioActual)
-    }
+        for(let i =0; i<valoresActuales.length; i++){
+            
+            let valorActual = valoresActuales[i]
+            console.log("Agregando valor del dia de "+valorActual["symbol"])
+            let precioActual = new Precio(moment().format('YYYY-MM-DD'), valorActual["regularMarketPrice"], valorActual["symbol"])
 
-    private async actualizarPrecioDeHoy(preciosRepository, precioActual){
-        console.log("Actualizando valor del dia de "+MonedaMap.BTC)
-
-        let valorActual = await yahooFinanceService.getValorActual(MonedaMap.BTC)
-        await preciosRepository.update({precioId : precioActual.precioId}, {valor: valorActual["regularMarketPrice"], ultimaActualizacion : moment().format('YYYY-MM-DD HH:mm:ss')})
+            await preciosRepository.save(precioActual)
+        }
 
     }
 
-    private async actualizarPrecioDeCierre(preciosRepository, valorActual){
-        console.log("Actualizando valor de cierre de ayer de "+MonedaMap.BTC)
+    private async actualizarPrecioDeHoy(preciosRepository){
 
-        let precioDeAyer = await preciosRepository.createQueryBuilder('p')
-            .where('p.fecha = :fecha', { fecha: moment().subtract(1, 'day').format('YYYY-MM-DD') })
-            .andWhere('p.codigo = :codigo', { codigo: MonedaMap.BTC})
-            .getOne();
+        let valoresActuales = await yahooFinanceService.getValorActual()
+
+        for(let i =0; i<valoresActuales.length; i++){
+            let valorActual = valoresActuales[i]
+            console.log("Actualizando valor del dia de "+valorActual["symbol"])
+            let precioActual = await preciosRepository.createQueryBuilder('p')
+                .where('p.fecha = :fecha', { fecha: moment().format('YYYY-MM-DD') })
+                .andWhere('p.codigo = :codigo', { codigo: valorActual["symbol"]})
+                .getOne();
+            await preciosRepository.update({precioId : precioActual.precioId}, {valor: valorActual["regularMarketPrice"], ultimaActualizacion : moment().format('YYYY-MM-DD HH:mm:ss')})
+        }
         
-        if(!precioDeAyer){
-            precioDeAyer = new Precio(moment().subtract(1, 'day').format('YYYY-MM-DD'), valorActual["regularMarketPreviousClose"], MonedaMap.BTC)
-            await preciosRepository.save(precioDeAyer)
-        }else{
-            await preciosRepository.update({precioId : precioDeAyer.precioId}, {valor: valorActual["regularMarketPreviousClose"], ultimaActualizacion : moment().format('YYYY-MM-DD HH:mm:ss')})
+    }
+
+    private async actualizarPrecioDeCierre(preciosRepository, valoresActuales){
+
+        for(let i =0; i<valoresActuales.length; i++){
+            let valorActual = valoresActuales[i]
+            console.log("Actualizando valor de cierre de ayer de "+valorActual["symbol"])
+
+            let precioDeAyer = await preciosRepository.createQueryBuilder('p')
+                .where('p.fecha = :fecha', { fecha: moment().subtract(1, 'day').format('YYYY-MM-DD') })
+                .andWhere('p.codigo = :codigo', { codigo: valorActual["symbol"]})
+                .getOne();
+            
+            if(!precioDeAyer){
+                precioDeAyer = new Precio(moment().subtract(1, 'day').format('YYYY-MM-DD'), valorActual["regularMarketPreviousClose"], valorActual["symbol"])
+                await preciosRepository.save(precioDeAyer)
+            }else{
+                await preciosRepository.update({precioId : precioDeAyer.precioId}, {valor: valorActual["regularMarketPreviousClose"], ultimaActualizacion : moment().format('YYYY-MM-DD HH:mm:ss')})
+            }
         }
 
     }

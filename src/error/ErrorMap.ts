@@ -21,4 +21,5 @@ export const ErrorMap: MapError = {
     USUARIO_EXISTENTE: new ErrorType("El email ya se encuentra en uso", 400),
     CLOUDINARY_ERROR: new ErrorType("Ocurrio un error al procesar el reel", 500),
     USUARIO_SIN_GRUPO_ERROR: new ErrorType("El usuario no tiene acceso al grupo de reels solicitado", 401),
+    INVERSION_REALIZADA_ERROR: new ErrorType("Solo se permite una unica inversion"),
 }
