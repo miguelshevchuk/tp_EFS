@@ -8,6 +8,7 @@ import LikeRoutes from "./LikeRoutes"
 import FavoritoRoutes from "./FavoritoRoutes"
 import ReelRoutes from "./ReelRoutes"
 import AccionRoutes from "./AccionRoutes"
+import MonedaRoutes from "./MonedaRoutes"
 
 class Routes {
 
@@ -27,6 +28,7 @@ class Routes {
         this.Router.use('/reel/favorito', FavoritoRoutes);
         this.Router.use('/reel', ReelRoutes);
         this.Router.use('/accion', AccionRoutes);
+        this.Router.use('/moneda', MonedaRoutes);
     }
 
 }
