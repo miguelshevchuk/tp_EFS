@@ -9,6 +9,8 @@ import FavoritoRoutes from "./FavoritoRoutes"
 import ReelRoutes from "./ReelRoutes"
 import AccionRoutes from "./AccionRoutes"
 import MonedaRoutes from "./MonedaRoutes"
+import InversionRoutes from "./InversionRoutes"
+import InversionesRoutes from "./InversionesRoutes"
 
 class Routes {
 
@@ -29,6 +31,8 @@ class Routes {
         this.Router.use('/reel', ReelRoutes);
         this.Router.use('/accion', AccionRoutes);
         this.Router.use('/moneda', MonedaRoutes);
+        this.Router.use('/inversion', InversionRoutes);
+        this.Router.use('/inversiones', InversionesRoutes);
     }
 
 }

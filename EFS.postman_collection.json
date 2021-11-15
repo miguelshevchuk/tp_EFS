@@ -402,6 +402,70 @@
 				"url": null
 			},
 			"response": []
+		},
+		{
+			"name": "precio moneda",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "inversion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNjkzNDMwOSwiZXhwIjoxNjM3MDIwNzA5fQ.p6rm20XZqduiKtC_iyT7WVmaHy0rSESM185-SlhlahY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigo\":\"BTC-USD\",\r\n    \"monedas\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/inversion",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"inversion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "inversiones",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNjkzNDMwOSwiZXhwIjoxNjM3MDIwNzA5fQ.p6rm20XZqduiKtC_iyT7WVmaHy0rSESM185-SlhlahY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/inversiones",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"inversiones"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [

@@ -9,6 +9,7 @@ import usuarioService from "../usuario/UsuarioService";
 import { InversionResponseDTO } from "../../dto/simulador/InversionResponseDTO";
 import { RendimientoInversionDTO } from "../../dto/simulador/RendimientoInversionDTO";
 import { ResumenInversionesDTO } from "../../dto/simulador/ResumenInversionesDTO";
+import { InversionYaRealizadaError } from "../../error/simulador/InversionYaRealizadaError";
 
 
 class InversionService{
@@ -80,11 +81,11 @@ class InversionService{
         let inversionActual = await inversionRepository.createQueryBuilder('i')
             .innerJoinAndSelect('i.usuario', 'u')
             .where('u.usuarioId = :usuarioId', { usuarioId: userId})
-            .andWhere('p.codigo = :codigo', { codigo: inversion.codigo})
+            .andWhere('i.codigo = :codigo', { codigo: inversion.codigo})
             .getOne();
 
         if(inversionActual){
-            //ERROR POR QUE YA COMPRO 
+            throw new InversionYaRealizadaError()
         }
     }
 
