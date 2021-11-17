@@ -3,7 +3,6 @@ import precioService from '../../service/simulador/PrecioService';
 import { ICRUDController } from '../ICRUDController';
 
 class MonedaController implements ICRUDController{
-    getAll: (req: express.Request, res: express.Response, next: express.NextFunction) => any;
     update: (req: express.Request, res: express.Response, next: express.NextFunction) => any;
     create: (req: express.Request, res: express.Response, next: express.NextFunction) => any;
     delete: (req: express.Request, res: express.Response, next: express.NextFunction) => any;
@@ -11,8 +10,17 @@ class MonedaController implements ICRUDController{
 
     public async getOne (req: express.Request, res: express.Response, next: express.NextFunction) {   
         try {
-            let precio = await precioService.getPrecioActual(req.params.moneda)
+            let precio = await precioService.getPrecioActual(req.params.moneda.toUpperCase())
             return res.status(200).send(precio)   
+        } catch (e) {
+          next(e)
+        }
+    }
+
+    public async getAll (req: express.Request, res: express.Response, next: express.NextFunction) {   
+        try {
+            let precios = await precioService.getHistorialPrecios(req.params.moneda.toUpperCase())
+            return res.status(200).send(precios)   
         } catch (e) {
           next(e)
         }

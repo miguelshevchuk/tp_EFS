@@ -23,9 +23,9 @@ class InversionService{
 
         let valorInversionInicial = inversion.monedas * 0.1
 
-        let cantidad = valorInversionInicial/precioMoneda.valor
+        let cantidad = valorInversionInicial/precioMoneda.close
 
-        let inversionInicial = new Inversion(userId, cantidad, precioMoneda.valor, valorInversionInicial, inversion.codigo)
+        let inversionInicial = new Inversion(userId, cantidad, precioMoneda.close, valorInversionInicial, inversion.codigo)
 
         await inversionRepository.save(inversionInicial)
 
@@ -66,7 +66,7 @@ class InversionService{
     private async getRendimientoInversion(inversion:Inversion){
         let precioActual = await precioService.getPrecioActual(inversion.codigo)
 
-        let totalInversion = precioActual.valor*inversion.cantidad
+        let totalInversion = precioActual.close*inversion.cantidad
 
         let rendimiento = ((totalInversion*100)/inversion.inversionInicial) - 100
 
