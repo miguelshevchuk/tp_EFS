@@ -16,6 +16,7 @@ class MonedaRoutes {
 
     config(): void {
         this.router.get('/precio/:moneda',authenticated, monedaController.getOne);
+        this.router.get('/precios/:moneda',authenticated, monedaController.getAll);
     }
 
 }

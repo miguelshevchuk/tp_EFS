@@ -68,6 +68,28 @@ class PrecioService{
 
     }
 
+    public async getHistorialPrecios(codigo:string){
+
+        let preciosRepository = getRepository(Precio);
+
+        let historialDePrecios = await preciosRepository.createQueryBuilder('p')
+            .andWhere('p.codigo = :codigo', { codigo: codigo})
+            .orderBy('p.fecha', 'ASC')
+            .getMany();
+
+        if(!historialDePrecios || historialDePrecios.length ===0 || historialDePrecios[0].ultimaActualizacion < moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')){
+            await this.guardarTodosLosValoresHistoricos(preciosRepository)
+
+            historialDePrecios = await preciosRepository.createQueryBuilder('p')
+                .andWhere('p.codigo = :codigo', { codigo: codigo})
+                .orderBy('p.fecha', 'ASC')
+                .getMany();
+        }
+
+        return historialDePrecios
+
+    }
+
 }
 
 

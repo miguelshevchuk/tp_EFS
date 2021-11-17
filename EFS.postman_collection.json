@@ -466,6 +466,31 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Precios Historicos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzNzExNDczMSwiZXhwIjoxNjM3MjAxMTMxfQ.jFYjVfF74PhQyiq77KwUQgMYJj82nNjgrE1PpdVQ8XA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/moneda/precios/gOlD",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"moneda",
+						"precios",
+						"gOlD"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
