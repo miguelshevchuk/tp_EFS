@@ -36,8 +36,23 @@
 			"name": "usuario",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": null
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzOTIzMjg0MywiZXhwIjoxNjM5MzE5MjQzfQ.X9wHmDbRJ85KbKe3CVE1OfWZz_XUU1sza9ngVmXKkoU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/usuario/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"usuario",
+						""
+					]
+				}
 			},
 			"response": []
 		},
