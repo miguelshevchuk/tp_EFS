@@ -2,11 +2,12 @@ import { Reel } from "../../model/Models"
 
 export class ReelDTO{
 
-    reelId:Number
+    reelId:number
     titulo:string
     imagen:string
     monedas:Number
     duracion:string
+    visto:boolean
 
     constructor(reel:Reel){
             this.reelId = reel.reelId

@@ -33,6 +33,15 @@
 			"response": []
 		},
 		{
+			"name": "usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
 			"name": "login",
 			"event": [
 				{
