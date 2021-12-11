@@ -10,7 +10,8 @@ class UsuarioController implements ICRUDController{
 
     public async getOne (req: express.Request, res: express.Response, next: express.NextFunction) {   
         try {
-            let usuario = await usuarioService.getUsuarioBy(req.params.id)
+            const userId = (req as any).user.usuarioId
+            let usuario = await usuarioService.getUsuario(userId)
             return res.status(200).send(usuario)   
         } catch (e) {
           next(e)

@@ -7,6 +7,7 @@ import { IPuntaje } from '../../interfaces/usuario/IPuntaje';
 import usuarioMapper from '../mapper/UsuarioMapper';
 import { Usuario, UsuarioGrupo, UsuarioMonedas } from '../../model/Models';
 import { PerfilMap } from './PerfilMap';
+import { UsuarioDTO } from '../../dto/usuario/UsuarioDTO';
 
 class UsuarioService{
  
@@ -85,6 +86,15 @@ class UsuarioService{
         await usuarioMonedasRepository.update({usuarioMonedasId: usuarioMonedas.usuarioMonedasId}, 
             {monedas: usuarioMonedas.monedas + monedas})
 
+    }
+
+    public async getUsuario(userId:number){
+
+        let usuario = await this.getUsuarioBy(userId)
+
+        let monedas = await this.getUsuarioMonedas(userId)
+
+        return new UsuarioDTO(usuario, monedas)
     }
 
 

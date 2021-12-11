@@ -29,8 +29,23 @@ class ReelService{
             .where('g.grupoId = :grupoId', { grupoId: grupo })
             .getMany();
 
-        return reelMapper.mapSecciones(secciones)
+        return this.cargarVistosALosReels(secciones, usuario)
+    }
 
+    private async cargarVistosALosReels(secciones:Seccion[], usuario:number){
+        let seccionesDTO = reelMapper.mapSecciones(secciones)
+
+        for(let i = 0; i< seccionesDTO.length ; i++){
+            let seccionDTO = seccionesDTO[i]
+
+            for(let u=0 ; u<seccionDTO.reels.length; u++){
+                let visualizaciones = this.getVisualizacion(usuario, seccionDTO.reels[u].reelId)
+
+                seccionDTO.reels[u].visto = (await visualizaciones).length > 0
+            }
+        }
+
+        return seccionesDTO
     }
 
     private async verificarGrupo(grupo:number, usuarioId:number){
