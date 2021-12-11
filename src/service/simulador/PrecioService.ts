@@ -51,17 +51,19 @@ class PrecioService{
         let preciosRepository = getRepository(Precio);
 
         let precioActual = await preciosRepository.createQueryBuilder('p')
-            .where('p.fecha = :fecha', { fecha: moment().format('YYYY-MM-DD') })
-            .andWhere('p.codigo = :codigo', { codigo: codigo})
+            .where('p.codigo = :codigo', { codigo: codigo})
+            .orderBy('p.fecha', 'DESC')
+            .limit(1)
             .getOne();
 
         if(!precioActual || precioActual.ultimaActualizacion < moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')){
             await this.guardarTodosLosValoresHistoricos(preciosRepository)
 
             precioActual = await preciosRepository.createQueryBuilder('p')
-            .where('p.fecha = :fecha', { fecha: moment().format('YYYY-MM-DD') })
-            .andWhere('p.codigo = :codigo', { codigo: codigo})
-            .getOne();
+                .where('p.codigo = :codigo', { codigo: codigo})
+                .orderBy('p.fecha', 'DESC')
+                .limit(1)
+                .getOne();
         }
 
         return precioActual
