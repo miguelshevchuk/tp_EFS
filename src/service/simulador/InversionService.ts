@@ -53,7 +53,7 @@ class InversionService{
             let resumen = await this.getRendimientoInversion(inversion)
             resumenes.push(resumen)
 
-            totalAcumulado = totalAcumulado+resumen.total
+            totalAcumulado = totalAcumulado+parseFloat(resumen.total)
             inversionInicialAcumulada = inversionInicialAcumulada+resumen.inversionInicial
         }
 

@@ -1,15 +1,23 @@
 export class RendimientoInversionDTO{
 
-    rendimiento:number
+    rendimiento:string
     inversionInicial:number
-    total:number
+    total:string
     cantidad:number
     codigo:string
 
     constructor(rendimiento:number, inversionInicial:number, total:number, cantidad:number, codigo:string){
-        this.rendimiento = rendimiento
+        if(rendimiento != null){
+            this.rendimiento = rendimiento.toFixed(2)
+        }else{
+            this.rendimiento = "0"
+        }
+        if(total != null){
+            this.total = total.toFixed(2)
+        }else{
+            this.total = "0"
+        }
         this.inversionInicial = inversionInicial
-        this.total = total
         this.cantidad = cantidad
         this.codigo = codigo
     }
