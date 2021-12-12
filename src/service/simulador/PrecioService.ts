@@ -76,6 +76,7 @@ class PrecioService{
 
         let historialDePrecios = await preciosRepository.createQueryBuilder('p')
             .andWhere('p.codigo = :codigo', { codigo: codigo})
+            .andWhere('p.fecha >= :fechaDesde', { fechaDesde: moment().subtract(10, 'days').format('YYYY-MM-DD HH:mm:ss')})
             .orderBy('p.fecha', 'ASC')
             .getMany();
 
@@ -84,6 +85,7 @@ class PrecioService{
 
             historialDePrecios = await preciosRepository.createQueryBuilder('p')
                 .andWhere('p.codigo = :codigo', { codigo: codigo})
+                .andWhere('p.fecha >= :fechaDesde', { fechaDesde: moment().subtract(10, 'days').format('YYYY-MM-DD HH:mm:ss')})
                 .orderBy('p.fecha', 'ASC')
                 .getMany();
         }
