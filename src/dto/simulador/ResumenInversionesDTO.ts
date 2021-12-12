@@ -2,16 +2,23 @@ import { RendimientoInversionDTO } from "./RendimientoInversionDTO"
 
 export class ResumenInversionesDTO{
 
-    rendimiento:number
-    inversionInicial:number
-    total:number
+    rendimiento:string
+    inversionInicial:string
+    total:string
     inversiones:RendimientoInversionDTO[]
+    clasificacion:string
 
     constructor(rendimiento:number, inversionInicial:number, total:number, inversiones:RendimientoInversionDTO[]){
-        this.rendimiento = rendimiento
-        this.inversionInicial = inversionInicial
-        this.total = total
+        if(rendimiento != null){
+            this.rendimiento = rendimiento.toString()
+        }else{
+            this.rendimiento = "0"
+        }
+        
+        this.inversionInicial = inversionInicial.toString()
+        this.total = total.toString()
         this.inversiones = inversiones
+        this.clasificacion = Math.floor(Math.random() * 20).toString()
     }
 
 }
