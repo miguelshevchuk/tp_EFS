@@ -56,7 +56,14 @@ export class Precio {
     })
     ultimaActualizacion: string;
 
-    constructor(fecha:string, codigo:string, open:number, close:number, high:number, low:number){        
+    @Column({
+        name: 'variacion',
+        type: 'float',
+        nullable: true
+    })
+    variacion: number;
+
+    constructor(fecha:string, codigo:string, open:number, close:number, high:number, low:number, variacion:number){        
         this.fecha = fecha
         this.ultimaActualizacion = moment().format('YYYY-MM-DD HH:mm:ss')
         this.codigo = codigo
@@ -64,6 +71,7 @@ export class Precio {
         this.close = close
         this.high = high
         this.low = low
+        this.variacion = variacion
     }
 
 }

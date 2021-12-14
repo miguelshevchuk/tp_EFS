@@ -431,8 +431,24 @@
 			"name": "precio moneda",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": null
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzOTQ0OTI0MiwiZXhwIjoxNjM5NTM1NjQyfQ.1jDgubbTFnA5XCNbTVnSE_uODzPFMIs2DA_2tux--B4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/moneda/precio/NVDA",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"moneda",
+						"precio",
+						"NVDA"
+					]
+				}
 			},
 			"response": []
 		},

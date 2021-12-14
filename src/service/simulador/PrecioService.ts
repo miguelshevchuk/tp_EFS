@@ -39,10 +39,31 @@ class PrecioService{
 
         for(let i =0; i < valoresHistoricos["timestamp"].length; i++){
             let indicadores = valoresHistoricos["indicators"]["quote"][0]
-            //console.log(JSON.stringify(indicadores))
-            let nuevoPrecio = new Precio(moment.unix(valoresHistoricos["timestamp"][i]).format('YYYY-MM-DD'), codigo, indicadores["open"][i], indicadores["close"][i], indicadores["high"][i], indicadores["low"][i])
-            preciosHistoricosRepository.save(nuevoPrecio)
+            if(indicadores["close"][i] != null){
+
+                let variacion = 0
+                if( i !=0 ){
+                    let indicadorAnterior = await this.getIndicadorAnterior(indicadores["close"], i)
+                    variacion = parseFloat(((indicadores["close"][i]*100) / indicadorAnterior -100).toFixed(2))
+                }
+                
+
+                let nuevoPrecio = new Precio(moment.unix(valoresHistoricos["timestamp"][i]).format('YYYY-MM-DD'), codigo, indicadores["open"][i], indicadores["close"][i], indicadores["high"][i], indicadores["low"][i], variacion)
+                preciosHistoricosRepository.save(nuevoPrecio)
+
+            }            
+
         }
+
+    }
+
+    private async getIndicadorAnterior(indicadores, posicionActual){
+
+        if(indicadores[posicionActual-1] != null){
+            return indicadores[posicionActual-1]
+        }
+
+        return this.getIndicadorAnterior(indicadores, posicionActual-1)
 
     }
 
@@ -64,6 +85,7 @@ class PrecioService{
                 .orderBy('p.fecha', 'DESC')
                 .limit(1)
                 .getOne();
+            
         }
 
         return precioActual
