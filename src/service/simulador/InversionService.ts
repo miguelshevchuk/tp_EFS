@@ -57,7 +57,7 @@ class InversionService{
 
         usuarioService.agregarMonedas(userId, monedas)
         inversionRepository.delete({inversionId : inversionActual.inversionId})
-        
+
         let monedasTotales = await usuarioService.getMonedasDelUsuario(userId)
 
         return new VentaResponseDTO(monedas, monedasTotales.monedas)
@@ -111,6 +111,8 @@ class InversionService{
             .where('u.usuarioId = :usuarioId', { usuarioId: userId})
             .andWhere('i.codigo = :codigo', { codigo: inversion.codigo.toUpperCase()})
             .getOne();
+
+        console.log(inversionActual)
 
         if(inversionActual){
             throw new InversionYaRealizadaError()
