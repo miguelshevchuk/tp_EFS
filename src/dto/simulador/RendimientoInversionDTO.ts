@@ -7,7 +7,7 @@ export class RendimientoInversionDTO{
     codigo:string
 
     constructor(rendimiento:number, inversionInicial:number, total:number, cantidad:number, codigo:string){
-        if(rendimiento != null && !isNaN(rendimiento)){
+        if(rendimiento != null){
             this.rendimiento = rendimiento.toFixed(2)
         }else{
             this.rendimiento = "0"
