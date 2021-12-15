@@ -33,11 +33,11 @@ class PrecioService{
 
     private async guardarValoresHistoricos(preciosHistoricosRepository, codigo:string){
 
-        preciosHistoricosRepository.delete({codigo: codigo})
 
         let valoresHistoricos = await yahooFinanceService.getDatosGrafico(codigo)
-
+        
         if(valoresHistoricos){
+            preciosHistoricosRepository.delete({codigo: codigo})
             for(let i =0; i < valoresHistoricos["timestamp"].length; i++){
                 let indicadores = valoresHistoricos["indicators"]["quote"][0]
                 if(indicadores["close"][i] != null){
@@ -79,6 +79,8 @@ class PrecioService{
             .orderBy('p.precioId', 'ASC')
             .limit(1)
             .getOne();
+
+        console.log(precioActual)
 
         if(!precioActual || precioActual.ultimaActualizacion < moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')){
             await this.guardarTodosLosValoresHistoricos(preciosRepository)
