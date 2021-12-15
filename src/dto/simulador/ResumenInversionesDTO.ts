@@ -10,7 +10,7 @@ export class ResumenInversionesDTO{
     portfolio:string
 
     constructor(rendimiento:number, inversionInicial:number, total:number, inversiones:RendimientoInversionDTO[]){
-        if(rendimiento != null){
+        if(rendimiento != null && !isNaN(rendimiento)){
             this.rendimiento = rendimiento.toFixed(2)
         }else{
             this.rendimiento = "0"
