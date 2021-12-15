@@ -37,22 +37,24 @@ class PrecioService{
 
         let valoresHistoricos = await yahooFinanceService.getDatosGrafico(codigo)
 
-        for(let i =0; i < valoresHistoricos["timestamp"].length; i++){
-            let indicadores = valoresHistoricos["indicators"]["quote"][0]
-            if(indicadores["close"][i] != null){
+        if(valoresHistoricos){
+            for(let i =0; i < valoresHistoricos["timestamp"].length; i++){
+                let indicadores = valoresHistoricos["indicators"]["quote"][0]
+                if(indicadores["close"][i] != null){
 
-                let variacion = 0
-                if( i !=0 ){
-                    let indicadorAnterior = await this.getIndicadorAnterior(indicadores["close"], i)
-                    variacion = parseFloat(((indicadores["close"][i]*100) / indicadorAnterior -100).toFixed(2))
-                }
-                
+                    let variacion = 0
+                    if( i !=0 ){
+                        let indicadorAnterior = await this.getIndicadorAnterior(indicadores["close"], i)
+                        variacion = parseFloat(((indicadores["close"][i]*100) / indicadorAnterior -100).toFixed(2))
+                    }
+                    
 
-                let nuevoPrecio = new Precio(moment.unix(valoresHistoricos["timestamp"][i]).format('YYYY-MM-DD'), codigo, indicadores["open"][i], indicadores["close"][i], indicadores["high"][i], indicadores["low"][i], variacion)
-                preciosHistoricosRepository.save(nuevoPrecio)
+                    let nuevoPrecio = new Precio(moment.unix(valoresHistoricos["timestamp"][i]).format('YYYY-MM-DD'), codigo, indicadores["open"][i], indicadores["close"][i], indicadores["high"][i], indicadores["low"][i], variacion)
+                    preciosHistoricosRepository.save(nuevoPrecio)
 
-            }            
+                }            
 
+            }
         }
 
     }
@@ -74,6 +76,7 @@ class PrecioService{
         let precioActual = await preciosRepository.createQueryBuilder('p')
             .where('p.codigo = :codigo', { codigo: codigo})
             .orderBy('p.fecha', 'DESC')
+            .orderBy('p.precioId', 'ASC')
             .limit(1)
             .getOne();
 
@@ -83,6 +86,7 @@ class PrecioService{
             precioActual = await preciosRepository.createQueryBuilder('p')
                 .where('p.codigo = :codigo', { codigo: codigo})
                 .orderBy('p.fecha', 'DESC')
+                .orderBy('p.precioId', 'ASC')
                 .limit(1)
                 .getOne();
             
