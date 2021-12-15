@@ -58,7 +58,8 @@ class YahooFinanceService{
             url: 'https://yfapi.net/v8/finance/chart/'+moneda,
             params: {interval: '1d', range: '1y', region:'US', comparisons: moneda, lang: 'EN', events: 'div,split'},
             headers: {
-                'x-api-key': 'BRisfaVeoA3ljOyX3yH3d48KW4Z7og2m4jJFrIJf'
+               // 'x-api-key': 'BRisfaVeoA3ljOyX3yH3d48KW4Z7og2m4jJFrIJf'
+                'x-api-key': 'zCQg2XZlNb2jDf7Kjq2Bm9EgUNWF5qZZ1neZK9hn'
             }
         };
 
