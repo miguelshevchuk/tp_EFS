@@ -14,6 +14,7 @@ class InversionRoutes {
 
     config(): void {
         this.router.post('/',authenticated, inversionController.create);
+        this.router.delete('/:moneda',authenticated, inversionController.delete);
     }
 
 }

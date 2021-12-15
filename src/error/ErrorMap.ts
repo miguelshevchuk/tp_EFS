@@ -22,4 +22,5 @@ export const ErrorMap: MapError = {
     CLOUDINARY_ERROR: new ErrorType("Ocurrio un error al procesar el reel", 500),
     USUARIO_SIN_GRUPO_ERROR: new ErrorType("El usuario no tiene acceso al grupo de reels solicitado", 400),
     INVERSION_REALIZADA_ERROR: new ErrorType("Solo se permite una unica inversion"),
+    INVERSION_NO_REALIZADA_ERROR: new ErrorType("No se realizo una inversion para la moneda seleccionada"),
 }

@@ -10,6 +10,8 @@ import { InversionResponseDTO } from "../../dto/simulador/InversionResponseDTO";
 import { RendimientoInversionDTO } from "../../dto/simulador/RendimientoInversionDTO";
 import { ResumenInversionesDTO } from "../../dto/simulador/ResumenInversionesDTO";
 import { InversionYaRealizadaError } from "../../error/simulador/InversionYaRealizadaError";
+import { InversionNoRealizadaError } from "../../error/simulador/InversionNoRealizadaError";
+import { VentaResponseDTO } from "../../dto/simulador/VentaResponseDTO";
 
 
 class InversionService{
@@ -25,7 +27,7 @@ class InversionService{
 
         let cantidad = valorInversionInicial/precioMoneda.close
 
-        let inversionInicial = new Inversion(userId, cantidad, precioMoneda.close, valorInversionInicial, inversion.codigo)
+        let inversionInicial = new Inversion(userId, cantidad, precioMoneda.close, valorInversionInicial, inversion.codigo.toUpperCase())
 
         await inversionRepository.save(inversionInicial)
 
@@ -33,6 +35,32 @@ class InversionService{
         let monedas = await usuarioService.getMonedasDelUsuario(userId)
 
         return new InversionResponseDTO(monedas.monedas, cantidad, valorInversionInicial)
+
+    }
+
+    public async vender(userId:number, codigo:string){
+        let inversionRepository = getRepository(Inversion);
+
+        let inversionActual = await inversionRepository.createQueryBuilder('i')
+            .innerJoinAndSelect('i.usuario', 'u')
+            .where('u.usuarioId = :usuarioId', { usuarioId: userId})
+            .andWhere('i.codigo = :codigo', { codigo: codigo})
+            .getOne();
+        
+        if(!inversionActual){
+            throw new InversionNoRealizadaError()
+        }
+
+        let precioMoneda =await precioService.getPrecioActual(codigo)
+
+        let monedas = Math.ceil((inversionActual.cantidad * precioMoneda.close) *10)
+
+        usuarioService.agregarMonedas(userId, monedas)
+        inversionRepository.delete({inversionId : inversionActual.inversionId})
+        
+        let monedasTotales = await usuarioService.getMonedasDelUsuario(userId)
+
+        return new VentaResponseDTO(monedas, monedasTotales.monedas)
 
     }
 
@@ -81,7 +109,7 @@ class InversionService{
         let inversionActual = await inversionRepository.createQueryBuilder('i')
             .innerJoinAndSelect('i.usuario', 'u')
             .where('u.usuarioId = :usuarioId', { usuarioId: userId})
-            .andWhere('i.codigo = :codigo', { codigo: inversion.codigo})
+            .andWhere('i.codigo = :codigo', { codigo: inversion.codigo.toUpperCase()})
             .getOne();
 
         if(inversionActual){

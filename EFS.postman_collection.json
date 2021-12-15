@@ -531,6 +531,30 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "inversion",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTYzOTUzNDQ1MSwiZXhwIjoxNjM5NjIwODUxfQ._y-dHmLNBwh5tSzEwRs3JZMcApEL-KTKNpRWlGnXaV8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/inversion/eth-usd",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"inversion",
+						"eth-usd"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
